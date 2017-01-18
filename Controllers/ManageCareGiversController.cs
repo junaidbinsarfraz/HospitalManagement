@@ -62,7 +62,7 @@ namespace HospitalManagament.Controllers
             {
                 // add careGiver
                 Caregiver caregiver = new Caregiver();
-                caregiver.Patient = db.Patients.ToList().Where(u => u.Id == user.Id).FirstOrDefault();
+                // caregiver.Patient = db.Patients.ToList().Where(u => u.Id == user.Id).FirstOrDefault();
 
                 // add role as caregiver 
                 user.Role = db.Roles.ToList().Where(u => u.Name == "Caregiver").FirstOrDefault();
@@ -77,7 +77,7 @@ namespace HospitalManagament.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PatientId = new SelectList(db.Patients.Include(a => a.User).Select(a => new { a.User.FullName, a.Id }), "Id", "FullName", user.Patient.Id);
+            ViewBag.PatientId = new SelectList(db.Patients.Include(a => a.User).Select(a => new { a.User.FullName, a.Id }), "Id", "FullName");
             return View(user);
         }
 
@@ -98,7 +98,7 @@ namespace HospitalManagament.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PatientId = new SelectList(db.Patients.Include(a => a.User).Select(a => new { a.User.FullName, a.Id }), "Id", "FullName", careGiver.Patient.Id);
+            ViewBag.PatientId = new SelectList(db.Patients.Include(a => a.User).Select(a => new { a.User.FullName, a.Id }), "Id", "FullName", 2);
             return View(db.Users.FirstOrDefault(a => a.Id == id));
         }
 
@@ -134,13 +134,29 @@ namespace HospitalManagament.Controllers
                 oldUser.Email = user.Email;
                 oldUser.Gender = user.Gender;
                 oldUser.Address = user.Address;
-                oldUser.Caregiver.Patient = db.Patients.ToList().Where(u => u.Id == user.Patient.Id).FirstOrDefault();
+                //oldUser.Caregiver.Patient = db.Patients.ToList().Where(u => u.Id == user.Patient.Id).FirstOrDefault();
 
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
+            else
+            {
+                foreach (ModelState modelState in ViewData.ModelState.Values)
+                {
+                    foreach (ModelError error in modelState.Errors)
+                    {
+                        System.Diagnostics.Debug.WriteLine(error);
+                    }
+                }
 
+                var errors = ModelState.Select(x => x.Value.Errors)
+                           .Where(y => y.Count > 0)
+                           .ToList();
+                System.Diagnostics.Debug.WriteLine(errors);
+            }
+
+            ViewBag.PatientId = new SelectList(db.Patients.Include(a => a.User).Select(a => new { a.User.FullName, a.Id }), "Id", "FullName", 2);
             return View(user);
         }
 
