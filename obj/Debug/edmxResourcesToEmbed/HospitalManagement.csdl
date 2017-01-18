@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="HospitalManagement" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="HospitalManagementContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Users" EntityType="HospitalManagement.User" />
+    <EntitySet Name="Patients" EntityType="HospitalManagement.Patient" />
+    <EntitySet Name="Caregivers" EntityType="HospitalManagement.Caregiver" />
+    <EntitySet Name="Doctors" EntityType="HospitalManagement.Doctor" />
+    <AssociationSet Name="UserPatient" Association="HospitalManagement.UserPatient">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Patient" EntitySet="Patients" />
+    </AssociationSet>
+    <AssociationSet Name="UserCaregiver" Association="HospitalManagement.UserCaregiver">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Caregiver" EntitySet="Caregivers" />
+    </AssociationSet>
+    <AssociationSet Name="UserDoctor" Association="HospitalManagement.UserDoctor">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Doctor" EntitySet="Doctors" />
+    </AssociationSet>
+    <AssociationSet Name="PatientCaregiver" Association="HospitalManagement.PatientCaregiver">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="Caregiver" EntitySet="Caregivers" />
+    </AssociationSet>
+    <EntitySet Name="Roles" EntityType="HospitalManagement.Role" />
+    <AssociationSet Name="UserRole" Association="HospitalManagement.UserRole">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Role" EntitySet="Roles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" Nullable="true" />
+    <Property Name="Password" Type="String" Nullable="true" />
+    <Property Name="UserName" Type="String" Nullable="true" />
+    <Property Name="Age" Type="Int64" Nullable="true" />
+    <Property Name="Gender" Type="String" Nullable="true" DefaultValue="Male" />
+    <Property Name="NRIC" Type="String" Nullable="true" />
+    <Property Name="Comments" Type="String" Nullable="true" />
+    <Property Name="Address" Type="String" Nullable="true" />
+    <Property Name="ContactNo" Type="String" Nullable="true" />
+    <NavigationProperty Name="Patient" Relationship="HospitalManagement.UserPatient" FromRole="User" ToRole="Patient" />
+    <NavigationProperty Name="Caregiver" Relationship="HospitalManagement.UserCaregiver" FromRole="User" ToRole="Caregiver" />
+    <NavigationProperty Name="Doctor" Relationship="HospitalManagement.UserDoctor" FromRole="User" ToRole="Doctor" />
+    <NavigationProperty Name="Role" Relationship="HospitalManagement.UserRole" FromRole="User" ToRole="Role" />
+    <Property Name="FullName" Type="String" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Disease" Type="String" Nullable="true" />
+    <Property Name="Occupation" Type="String" Nullable="true" />
+    <NavigationProperty Name="User" Relationship="HospitalManagement.UserPatient" FromRole="Patient" ToRole="User" />
+    <NavigationProperty Name="Caregiver" Relationship="HospitalManagement.PatientCaregiver" FromRole="Patient" ToRole="Caregiver" />
+  </EntityType>
+  <EntityType Name="Caregiver">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="User" Relationship="HospitalManagement.UserCaregiver" FromRole="Caregiver" ToRole="User" />
+    <NavigationProperty Name="Patient" Relationship="HospitalManagement.PatientCaregiver" FromRole="Caregiver" ToRole="Patient" />
+  </EntityType>
+  <EntityType Name="Doctor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Designation" Type="String" Nullable="true" />
+    <Property Name="Specialization" Type="String" Nullable="true" />
+    <NavigationProperty Name="User" Relationship="HospitalManagement.UserDoctor" FromRole="Doctor" ToRole="User" />
+  </EntityType>
+  <Association Name="UserPatient">
+    <End Type="HospitalManagement.User" Role="User" Multiplicity="1" />
+    <End Type="HospitalManagement.Patient" Role="Patient" Multiplicity="0..1" />
+  </Association>
+  <Association Name="UserCaregiver">
+    <End Type="HospitalManagement.User" Role="User" Multiplicity="1" />
+    <End Type="HospitalManagement.Caregiver" Role="Caregiver" Multiplicity="0..1" />
+  </Association>
+  <Association Name="UserDoctor">
+    <End Type="HospitalManagement.User" Role="User" Multiplicity="1" />
+    <End Type="HospitalManagement.Doctor" Role="Doctor" Multiplicity="0..1" />
+  </Association>
+  <Association Name="PatientCaregiver">
+    <End Type="HospitalManagement.Patient" Role="Patient" Multiplicity="0..1" />
+    <End Type="HospitalManagement.Caregiver" Role="Caregiver" Multiplicity="0..1" />
+  </Association>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Users" Relationship="HospitalManagement.UserRole" FromRole="Role" ToRole="User" />
+    <Property Name="Name" Type="String" Nullable="true" />
+  </EntityType>
+  <Association Name="UserRole">
+    <End Type="HospitalManagement.User" Role="User" Multiplicity="*" />
+    <End Type="HospitalManagement.Role" Role="Role" Multiplicity="1" />
+  </Association>
+</Schema>

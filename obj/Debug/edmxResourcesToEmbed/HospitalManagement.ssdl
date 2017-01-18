@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HospitalManagement.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="HospitalManagementStoreContainer">
+    <EntitySet Name="Users" EntityType="HospitalManagement.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Patients" EntityType="HospitalManagement.Store.Patients" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Caregivers" EntityType="HospitalManagement.Store.Caregivers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Doctors" EntityType="HospitalManagement.Store.Doctors" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Roles" EntityType="HospitalManagement.Store.Roles" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserPatient" Association="HospitalManagement.Store.UserPatient">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Patient" EntitySet="Patients" />
+    </AssociationSet>
+    <AssociationSet Name="UserCaregiver" Association="HospitalManagement.Store.UserCaregiver">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Caregiver" EntitySet="Caregivers" />
+    </AssociationSet>
+    <AssociationSet Name="UserDoctor" Association="HospitalManagement.Store.UserDoctor">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Doctor" EntitySet="Doctors" />
+    </AssociationSet>
+    <AssociationSet Name="PatientCaregiver" Association="HospitalManagement.Store.PatientCaregiver">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="Caregiver" EntitySet="Caregivers" />
+    </AssociationSet>
+    <AssociationSet Name="UserRole" Association="HospitalManagement.Store.UserRole">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Role" EntitySet="Roles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Age" Type="bigint" Nullable="true" />
+    <Property Name="Gender" Type="nvarchar(max)" Nullable="true" DefaultValue="Male" />
+    <Property Name="NRIC" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Comments" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ContactNo" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FullName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Role_Id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Patients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Disease" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Occupation" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="User_Id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Caregivers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_Id" Type="bigint" Nullable="false" />
+    <Property Name="Patient_Id" Type="bigint" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Doctors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Designation" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Specialization" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="User_Id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <Association Name="UserPatient">
+    <End Role="User" Type="HospitalManagement.Store.Users" Multiplicity="1" />
+    <End Role="Patient" Type="HospitalManagement.Store.Patients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Patient">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserCaregiver">
+    <End Role="User" Type="HospitalManagement.Store.Users" Multiplicity="1" />
+    <End Role="Caregiver" Type="HospitalManagement.Store.Caregivers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Caregiver">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserDoctor">
+    <End Role="User" Type="HospitalManagement.Store.Users" Multiplicity="1" />
+    <End Role="Doctor" Type="HospitalManagement.Store.Doctors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Doctor">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PatientCaregiver">
+    <End Role="Patient" Type="HospitalManagement.Store.Patients" Multiplicity="0..1" />
+    <End Role="Caregiver" Type="HospitalManagement.Store.Caregivers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Caregiver">
+        <PropertyRef Name="Patient_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserRole">
+    <End Role="User" Type="HospitalManagement.Store.Users" Multiplicity="*" />
+    <End Role="Role" Type="HospitalManagement.Store.Roles" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Role_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

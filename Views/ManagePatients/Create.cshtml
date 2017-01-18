@@ -1,0 +1,80 @@
+﻿@model HospitalManagament.User
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="white-box">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12">
+            @using (Html.BeginForm("Create", "ManagePatients", FormMethod.Post,
+                             new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-group">
+                    <label for="exampleInputEmail1">FullName</label>
+                    @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">UserName</label>
+                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "password" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">NRIC</label>
+                    @Html.EditorFor(model => model.NRIC, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.NRIC, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Age</label>
+                    @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">ContactNo</label>
+                    @Html.EditorFor(model => model.ContactNo, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.ContactNo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Email</label>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Gender</label>
+                    <div>
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(u => u.Gender, "Male", new { @class = "form-control", @checked = true, @id = "Male" })
+                        </label> <label for="Male">Male</label>
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(u => u.Gender, "Female", new { @class = "form-control", @id = "Female" })
+                        </label> <label for="Female">Female</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Occupation</label>
+                    @Html.EditorFor(model => model.Patient.Occupation, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Patient.Occupation, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Illness</label>
+                    @Html.EditorFor(model => model.Patient.Disease, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Patient.Disease, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Address</label>
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Create</button>
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success waves-effect waves-light m-r-10" })
+            }
+        </div>
+    </div>
+</div>

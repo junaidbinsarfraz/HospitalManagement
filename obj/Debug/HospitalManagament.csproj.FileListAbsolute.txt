@@ -1,0 +1,117 @@
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\HospitalManagament.dll.config
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\HospitalManagament.dll
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\HospitalManagament.pdb
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\Antlr3.Runtime.dll
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\Microsoft.Web.Infrastructure.dll
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\Newtonsoft.Json.dll
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\System.Web.Helpers.dll
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\System.Web.Mvc.dll
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\System.Web.Optimization.dll
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\System.Web.Razor.dll
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\System.Web.WebPages.Deployment.dll
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\System.Web.WebPages.dll
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\System.Web.WebPages.Razor.dll
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\WebGrease.dll
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\System.Web.Helpers.xml
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\System.Web.Mvc.xml
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\System.Web.Optimization.xml
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\System.Web.Razor.xml
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\System.Web.WebPages.xml
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\System.Web.WebPages.Deployment.xml
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\System.Web.WebPages.Razor.xml
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\Antlr3.Runtime.pdb
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\Newtonsoft.Json.xml
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\obj\Debug\HospitalManagament.csprojResolveAssemblyReference.cache
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\obj\Debug\HospitalManagament.dll
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\obj\Debug\HospitalManagament.pdb
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\HospitalManagementDataLayer.dll
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\EntityFramework.dll
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\HospitalManagementDataLayer.pdb
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\EntityFramework.xml
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\EntityFramework.SqlServer.dll
+D:\Freealnce Projects\Marco\Projects\SunMvc\HospitalManagament\HospitalManagament\bin\EntityFramework.SqlServer.xml
+C:\Users\Intel\Desktop\HospitalManagament (7)\bin\HospitalManagament.dll.config
+C:\Users\Intel\Desktop\HospitalManagament (7)\bin\HospitalManagament.dll
+C:\Users\Intel\Desktop\HospitalManagament (7)\bin\HospitalManagament.pdb
+C:\Users\Intel\Desktop\HospitalManagament (7)\bin\EntityFramework.xml
+C:\Users\Intel\Desktop\HospitalManagament (7)\bin\EntityFramework.SqlServer.xml
+C:\Users\Intel\Desktop\HospitalManagament (7)\bin\System.Web.Helpers.xml
+C:\Users\Intel\Desktop\HospitalManagament (7)\bin\System.Web.Mvc.xml
+C:\Users\Intel\Desktop\HospitalManagament (7)\bin\System.Web.Optimization.xml
+C:\Users\Intel\Desktop\HospitalManagament (7)\bin\System.Web.Razor.xml
+C:\Users\Intel\Desktop\HospitalManagament (7)\bin\System.Web.WebPages.xml
+C:\Users\Intel\Desktop\HospitalManagament (7)\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Intel\Desktop\HospitalManagament (7)\bin\System.Web.WebPages.Razor.xml
+C:\Users\Intel\Desktop\HospitalManagament (7)\bin\Antlr3.Runtime.pdb
+C:\Users\Intel\Desktop\HospitalManagament (7)\bin\Newtonsoft.Json.xml
+C:\Users\Intel\Desktop\HospitalManagament (7)\obj\Debug\HospitalManagament.csprojResolveAssemblyReference.cache
+C:\Users\Intel\Desktop\HospitalManagament (7)\obj\Debug\HospitalManagament.dll
+C:\Users\Intel\Desktop\HospitalManagament (7)\obj\Debug\HospitalManagament.pdb
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\HospitalManagament.dll.config
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\HospitalManagament.dll
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\HospitalManagament.pdb
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\Antlr3.Runtime.dll
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\EntityFramework.dll
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\EntityFramework.SqlServer.dll
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\HospitalManagementDataLayer.dll
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\Microsoft.Web.Infrastructure.dll
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\Newtonsoft.Json.dll
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\System.Web.Helpers.dll
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\System.Web.Mvc.dll
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\System.Web.Optimization.dll
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\System.Web.Razor.dll
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\System.Web.WebPages.Deployment.dll
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\System.Web.WebPages.dll
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\System.Web.WebPages.Razor.dll
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\WebGrease.dll
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\HospitalManagementDataLayer.pdb
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\EntityFramework.xml
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\EntityFramework.SqlServer.xml
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\System.Web.Helpers.xml
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\System.Web.Mvc.xml
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\System.Web.Optimization.xml
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\System.Web.Razor.xml
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\System.Web.WebPages.xml
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\System.Web.WebPages.Deployment.xml
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\System.Web.WebPages.Razor.xml
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\Antlr3.Runtime.pdb
+E:\Downloads\HospitalManagament (6)\HospitalManagament\bin\Newtonsoft.Json.xml
+E:\Downloads\HospitalManagament (6)\HospitalManagament\obj\Debug\HospitalManagament.csprojResolveAssemblyReference.cache
+E:\Downloads\HospitalManagament (6)\HospitalManagament\obj\Debug\HospitalManagament.dll
+E:\Downloads\HospitalManagament (6)\HospitalManagament\obj\Debug\HospitalManagament.pdb
+D:\Junaid\HospitalManagament\bin\HospitalManagament.dll.config
+D:\Junaid\HospitalManagament\bin\HospitalManagament.dll
+D:\Junaid\HospitalManagament\bin\HospitalManagament.pdb
+D:\Junaid\HospitalManagament\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\Junaid\HospitalManagament\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\Junaid\HospitalManagament\bin\Microsoft.Owin.dll
+D:\Junaid\HospitalManagament\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Junaid\HospitalManagament\bin\Microsoft.Owin.Security.dll
+D:\Junaid\HospitalManagament\bin\Microsoft.Web.Infrastructure.dll
+D:\Junaid\HospitalManagament\bin\Newtonsoft.Json.dll
+D:\Junaid\HospitalManagament\bin\Owin.dll
+D:\Junaid\HospitalManagament\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\Junaid\HospitalManagament\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\Junaid\HospitalManagament\bin\Microsoft.Owin.xml
+D:\Junaid\HospitalManagament\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Junaid\HospitalManagament\bin\Microsoft.Owin.Security.xml
+D:\Junaid\HospitalManagament\bin\Microsoft.Web.Infrastructure.xml
+D:\Junaid\HospitalManagament\obj\Debug\HospitalManagament.dll
+D:\Junaid\HospitalManagament\obj\Debug\HospitalManagament.pdb
+C:\Users\Junaid\Downloads\HospitalManagament\bin\HospitalManagament.dll.config
+C:\Users\Junaid\Downloads\HospitalManagament\bin\HospitalManagament.dll
+C:\Users\Junaid\Downloads\HospitalManagament\bin\HospitalManagament.pdb
+C:\Users\Junaid\Downloads\HospitalManagament\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Junaid\Downloads\HospitalManagament\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Junaid\Downloads\HospitalManagament\bin\Microsoft.Owin.dll
+C:\Users\Junaid\Downloads\HospitalManagament\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Junaid\Downloads\HospitalManagament\bin\Microsoft.Owin.Security.dll
+C:\Users\Junaid\Downloads\HospitalManagament\bin\Owin.dll
+C:\Users\Junaid\Downloads\HospitalManagament\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Junaid\Downloads\HospitalManagament\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\Junaid\Downloads\HospitalManagament\bin\Microsoft.Owin.xml
+C:\Users\Junaid\Downloads\HospitalManagament\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Junaid\Downloads\HospitalManagament\bin\Microsoft.Owin.Security.xml
+C:\Users\Junaid\Downloads\HospitalManagament\obj\Debug\HospitalManagament.csprojResolveAssemblyReference.cache
+C:\Users\Junaid\Downloads\HospitalManagament\obj\Debug\HospitalManagament.dll
+C:\Users\Junaid\Downloads\HospitalManagament\obj\Debug\HospitalManagament.pdb

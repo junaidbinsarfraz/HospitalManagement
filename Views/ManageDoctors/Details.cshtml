@@ -1,0 +1,83 @@
+﻿@model HospitalManagament.User
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="white-box">
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <div class="white-box">
+                <div class="user-bg"> <img alt="user" src="~/plugins/images/big/img3.jpg" width="100%"> </div>
+                <div class="user-btm-box">
+                    <!-- .row -->
+                    <div class="row text-center m-t-10">
+                        <div class="col-md-6 b-r">
+                            <strong>Name</strong>
+                            <p>@Model.UserName</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Occupation</strong>
+                            <p>Care Giver</p>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                    <hr>
+                    <!-- .row -->
+                    <div class="row text-center m-t-10">
+                        <div class="col-md-6 b-r">
+                            <strong>Email ID</strong>
+                            <p>@Model.Email</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Phone</strong>
+                            <p>@Model.ContactNo</p>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                    <hr>
+                    <!-- .row -->
+                    <div class="row text-center m-t-10">
+                        <div class="col-md-12">
+                            <strong>Address</strong>
+                            <p>
+                                @Model.Address
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-xs-12">
+            <div class="white-box">
+                <div class="row">
+                    <div class="col-md-3 col-xs-6 b-r">
+                        <strong>Full Name</strong>
+                        <br>
+                        <p class="text-muted">@Model.FullName</p>
+                    </div>
+                    <div class="col-md-3 col-xs-6 b-r">
+                        <strong>Mobile</strong>
+                        <br>
+                        <p class="text-muted">@Model.ContactNo</p>
+                    </div>
+                    <div class="col-md-3 col-xs-6 b-r">
+                        <strong>Email</strong>
+                        <br>
+                        <p class="text-muted">@Model.Email</p>
+                    </div>
+                </div>
+                <hr>
+                <p class="m-t-30">
+                    @Model.Comments
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
