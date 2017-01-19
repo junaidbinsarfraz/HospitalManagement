@@ -7,9 +7,10 @@ namespace HospitalManagament.Models
 {
     public class CountGendersPerMonth
     {
-        private string Gender { get; set; }
-        private string Month { get; set; }
-        private int MonthNumber { get; set; }
-        private int Count { get; set; }
+        public string Gender { get; set; }
+        public string Month { get; set; }
+        public int MonthNumber { get; set; }
+        public int Count { get; set; }
+        public DateTime ActualDate { get; set; }
     }
 }
