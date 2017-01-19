@@ -178,6 +178,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HospitalManagement.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CountGendersPerMonth.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Patient.cs">
       <DependentUpon>HospitalManagement.tt</DependentUpon>

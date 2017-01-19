@@ -49,6 +49,27 @@ namespace HospitalManagament.Controllers
                         HttpContext.Session["TotalDoctorList"] = dataContext.Users.Where(u => u.Doctor != null).ToList();
                         HttpContext.Session["TotalDoctors"] = dataContext.Users.Count(u => u.Doctor != null);
 
+                        // Chart - JSON
+                        //dataContext.Users.Include(a => a.)
+
+                        var months = dataContext.Patients
+                        .AsEnumerable()
+                        .Select(c => new
+                        {
+                            MonthName = c.EntryDate.Value.ToString("MMMM")
+                        }).ToList();
+
+                        var GenderMonth = dataContext.Database.SqlQuery<CountGendersPerMonth>("Select u.Gender, datename(month, DATEPART(MONTH, p.EntryDate)) month, DATEPART(MONTH, p.EntryDate) monthnumber, COUNT(p.User_Id) count from [HospitalManagement].[dbo].[Patients] p,[HospitalManagement].[dbo].[Users] u where u.Id = p.User_Id group by DATEPART(MONTH, p.EntryDate), u.Gender").ToList();
+
+                        // Create months list
+                        var labels = new List<string>() { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+
+                        var MaleCount = new List<int>() { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+                        var FemaleCount = new List<int>() { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+
+
                         return RedirectToAction("Index", "Home");
                     }
 

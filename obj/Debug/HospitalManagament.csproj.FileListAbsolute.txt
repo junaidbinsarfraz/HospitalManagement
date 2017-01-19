@@ -148,6 +148,6 @@ D:\Junaid\Github\HospitalManagement\bin\Microsoft.Owin.xml
 D:\Junaid\Github\HospitalManagement\bin\Microsoft.Owin.Host.SystemWeb.xml
 D:\Junaid\Github\HospitalManagement\bin\Microsoft.Owin.Security.xml
 D:\Junaid\Github\HospitalManagement\bin\Microsoft.Web.Infrastructure.xml
-D:\Junaid\Github\HospitalManagement\obj\Debug\HospitalManagament.csprojResolveAssemblyReference.cache
 D:\Junaid\Github\HospitalManagement\obj\Debug\HospitalManagament.dll
 D:\Junaid\Github\HospitalManagement\obj\Debug\HospitalManagament.pdb
+D:\Junaid\Github\HospitalManagement\obj\Debug\HospitalManagament.csprojResolveAssemblyReference.cache
