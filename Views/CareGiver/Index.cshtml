@@ -72,7 +72,21 @@
                 <div class="col-md-3 col-xs-6">
                     <strong>Caring Patient</strong>
                     <br>
-                    <p class="text-muted">@Model.Caregiver.Patient.User.FullName</p>
+                    @{
+                        if (Model.Caregiver.Patient != null)
+                        {
+                            <p class="text-muted">
+                                @Model.Caregiver.Patient.User.FullName
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="text-muted">
+                                Patient
+                            </p>
+                        }
+
+                    }
                 </div>
             </div>
             <hr>

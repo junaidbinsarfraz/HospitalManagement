@@ -24,6 +24,8 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Disease" ColumnName="Disease" />
           <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

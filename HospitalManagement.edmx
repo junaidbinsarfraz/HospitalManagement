@@ -56,6 +56,8 @@
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Disease" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Occupation" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="EntryDate" Type="datetime" Nullable="true" />
+    <Property Name="EntryTime" Type="time" Nullable="true" />
     <Property Name="User_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Caregivers">
@@ -202,6 +204,8 @@
           <Property Name="Occupation" Type="String" Nullable="true" />
           <NavigationProperty Name="User" Relationship="HospitalManagement.UserPatient" FromRole="Patient" ToRole="User" />
           <NavigationProperty Name="Caregiver" Relationship="HospitalManagement.PatientCaregiver" FromRole="Patient" ToRole="Caregiver" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="true" />
+          <Property Name="EntryTime" Type="Time" Nullable="true" />
         </EntityType>
         <EntityType Name="Caregiver">
           <Key>
@@ -277,6 +281,8 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Disease" ColumnName="Disease" />
           <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

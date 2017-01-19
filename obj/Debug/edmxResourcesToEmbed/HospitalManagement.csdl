@@ -56,6 +56,8 @@
     <Property Name="Occupation" Type="String" Nullable="true" />
     <NavigationProperty Name="User" Relationship="HospitalManagement.UserPatient" FromRole="Patient" ToRole="User" />
     <NavigationProperty Name="Caregiver" Relationship="HospitalManagement.PatientCaregiver" FromRole="Patient" ToRole="Caregiver" />
+    <Property Name="EntryDate" Type="DateTime" Nullable="true" />
+    <Property Name="EntryTime" Type="Time" Nullable="true" />
   </EntityType>
   <EntityType Name="Caregiver">
     <Key>

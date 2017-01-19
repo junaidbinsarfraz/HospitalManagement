@@ -25,19 +25,6 @@ GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
 
-ALTER DATABASE [HospitalManagement] SET COMPATIBILITY_LEVEL = 100
-GO
-
-ALTER DATABASE [HospitalManagement] SET  ENABLE_BROKER 
-GO
-
-SET QUOTED_IDENTIFIER OFF;
-GO
-USE [HospitalManagement];
-GO
-IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
-GO
-
 -- --------------------------------------------------
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
@@ -104,6 +91,8 @@ CREATE TABLE [dbo].[Patients] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
     [Disease] nvarchar(max)  NULL,
     [Occupation] nvarchar(max)  NULL,
+    [EntryDate] datetime  NULL,
+    [EntryTime] time  NULL,
     [User_Id] bigint  NOT NULL
 );
 GO

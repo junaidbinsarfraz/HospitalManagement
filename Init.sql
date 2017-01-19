@@ -23,7 +23,7 @@ VALUES
 GO
 
 INSERT INTO [Patients]
-([Patients].Disease, [Patients].Occupation, [Patients].User_Id)
+([Patients].Disease, [Patients].Occupation, [Patients].User_Id, [Patients].EntryDate, [Patients].EntryTime)
 VALUES
-('Flu', 'Engineer', 1)
+('Flu', 'Engineer', 2, '20170618 10:34:09 AM', '10:34:09 AM')
 GO

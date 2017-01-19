@@ -2,21 +2,9 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/17/2017 17:19:58
--- Generated from EDMX file: C:\Users\Junaid\Downloads\HospitalManagament\HospitalManagement.edmx
+-- Date Created: 01/19/2017 09:38:12
+-- Generated from EDMX file: D:\Junaid\Github\HospitalManagement\HospitalManagement.edmx
 -- --------------------------------------------------
-
-USE master
-GO
-
---Create a database
-IF EXISTS(SELECT name FROM sys.databases
-    WHERE name = 'HospitalManagement')
-    DROP DATABASE HospitalManagement
-GO
-
-CREATE DATABASE HospitalManagement
-GO
 
 SET QUOTED_IDENTIFIER OFF;
 GO
@@ -25,21 +13,45 @@ GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
 
-ALTER DATABASE [HospitalManagement] SET COMPATIBILITY_LEVEL = 100
-GO
-
-ALTER DATABASE [HospitalManagement] SET  ENABLE_BROKER 
-GO
-
 -- --------------------------------------------------
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_UserPatient]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Patients] DROP CONSTRAINT [FK_UserPatient];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserCaregiver]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Caregivers] DROP CONSTRAINT [FK_UserCaregiver];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserDoctor]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Doctors] DROP CONSTRAINT [FK_UserDoctor];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PatientCaregiver]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Caregivers] DROP CONSTRAINT [FK_PatientCaregiver];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserRole]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_UserRole];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
+GO
+IF OBJECT_ID(N'[dbo].[Patients]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Patients];
+GO
+IF OBJECT_ID(N'[dbo].[Caregivers]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Caregivers];
+GO
+IF OBJECT_ID(N'[dbo].[Doctors]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Doctors];
+GO
+IF OBJECT_ID(N'[dbo].[Roles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Roles];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -48,16 +60,16 @@ GO
 -- Creating table 'Users'
 CREATE TABLE [dbo].[Users] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
-    [Email] nvarchar(max)  NOT NULL,
-    [Password] nvarchar(max)  NOT NULL,
-    [UserName] nvarchar(max)  NOT NULL,
-    [Age] bigint  NOT NULL,
-    [Gender] bit  NOT NULL,
-    [NRIC] nvarchar(max)  NOT NULL,
-    [Comments] nvarchar(max)  NOT NULL,
-    [Address] nvarchar(max)  NOT NULL,
-    [ContactNo] nvarchar(max)  NOT NULL,
-    [FullName] nvarchar(max)  NOT NULL,
+    [Email] nvarchar(max)  NULL,
+    [Password] nvarchar(max)  NULL,
+    [UserName] nvarchar(max)  NULL,
+    [Age] bigint  NULL,
+    [Gender] nvarchar(max)  NULL,
+    [NRIC] nvarchar(max)  NULL,
+    [Comments] nvarchar(max)  NULL,
+    [Address] nvarchar(max)  NULL,
+    [ContactNo] nvarchar(max)  NULL,
+    [FullName] nvarchar(max)  NULL,
     [Role_Id] bigint  NOT NULL
 );
 GO
@@ -65,8 +77,10 @@ GO
 -- Creating table 'Patients'
 CREATE TABLE [dbo].[Patients] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
-    [Disease] nvarchar(max)  NOT NULL,
-    [Occupation] nvarchar(max)  NOT NULL,
+    [Disease] nvarchar(max)  NULL,
+    [Occupation] nvarchar(max)  NULL,
+    [EntryDate] datetime  NULL,
+    [EntryTime] time  NULL,
     [User_Id] bigint  NOT NULL
 );
 GO
@@ -82,8 +96,8 @@ GO
 -- Creating table 'Doctors'
 CREATE TABLE [dbo].[Doctors] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
-    [Designation] nvarchar(max)  NOT NULL,
-    [Specialization] nvarchar(max)  NOT NULL,
+    [Designation] nvarchar(max)  NULL,
+    [Specialization] nvarchar(max)  NULL,
     [User_Id] bigint  NOT NULL
 );
 GO
@@ -91,7 +105,7 @@ GO
 -- Creating table 'Roles'
 CREATE TABLE [dbo].[Roles] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NOT NULL
+    [Name] nvarchar(max)  NULL
 );
 GO
 

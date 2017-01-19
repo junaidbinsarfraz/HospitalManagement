@@ -57,7 +57,7 @@ namespace HospitalManagament.Controllers
                 oldUser.Email = user.Email;
                 oldUser.Gender = user.Gender;
                 oldUser.Address = user.Address;
-                oldUser.Caregiver.Patient = db.Patients.ToList().Where(u => u.Id == user.Patient.Id).FirstOrDefault();
+                // oldUser.Caregiver.Patient = db.Patients.ToList().Where(u => u.Id == user.Patient.Id).FirstOrDefault();
 
                 db.SaveChanges();
 
@@ -85,7 +85,7 @@ namespace HospitalManagament.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PatientId = new SelectList(db.Patients.Include(a => a.User).Select(a => new { a.User.FullName, a.Id }), "Id", "FullName", careGiver.Patient.Id);
+            ViewBag.PatientId = new SelectList(db.Patients.Include(a => a.User).Select(a => new { a.User.FullName, a.Id }), "Id", "FullName");
             return View(db.Users.FirstOrDefault(a => a.Id == id));
         }
     }

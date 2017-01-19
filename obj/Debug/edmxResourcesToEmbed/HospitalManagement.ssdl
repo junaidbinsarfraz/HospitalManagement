@@ -51,6 +51,8 @@
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Disease" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Occupation" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="EntryDate" Type="datetime" Nullable="true" />
+    <Property Name="EntryTime" Type="time" Nullable="true" />
     <Property Name="User_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Caregivers">

@@ -147,6 +147,24 @@ namespace HospitalManagament.Controllers
                     foreach (ModelError error in modelState.Errors)
                     {
                         System.Diagnostics.Debug.WriteLine(error);
+                        if(error.ErrorMessage == "The Id field is required.")
+                        {
+                            User oldUser = db.Users.FirstOrDefault(u => u.Id == user.Id);
+
+                            oldUser.FullName = user.FullName;
+                            oldUser.UserName = user.UserName;
+                            oldUser.NRIC = user.NRIC;
+                            oldUser.Age = user.Age;
+                            oldUser.ContactNo = user.ContactNo;
+                            oldUser.Email = user.Email;
+                            oldUser.Gender = user.Gender;
+                            oldUser.Address = user.Address;
+                            //oldUser.Caregiver.Patient = db.Patients.ToList().Where(u => u.Id == user.Patient.Id).FirstOrDefault();
+
+                            db.SaveChanges();
+
+                            return RedirectToAction("Index");
+                        }
                     }
                 }
 

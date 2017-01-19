@@ -22,6 +22,15 @@
     <link href="~/css/colors/megna.css" id="theme" rel="stylesheet">
     <link href="~/plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <!-- Page plugins css -->
+    <link href="~/plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet">
+    <!-- Color picker plugins css -->
+    <link href="~/plugins/bower_components/jquery-asColorPicker-master/css/asColorPicker.css" rel="stylesheet">
+    <!-- Date picker plugins css -->
+    <link href="~/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+    <!-- Daterange picker plugins css -->
+    <link href="~/plugins/bower_components/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+    <link href="~/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="~/css/style.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -345,6 +354,26 @@
         <script src="~/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
         <script src="~/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
 
+        @*<script src="~/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
+
+        <script src="~/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
+        <script src="~/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>*@
+
+        <!-- Plugin JavaScript -->
+        <script src="~/plugins/bower_components/moment/moment.js"></script>
+
+        <!-- Clock Plugin JavaScript -->
+        <script src="~/plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.js"></script>
+        <!-- Color Picker Plugin JavaScript -->
+        <script src="~/plugins/bower_components/jquery-asColorPicker-master/libs/jquery-asColor.js"></script>
+        <script src="~/plugins/bower_components/jquery-asColorPicker-master/libs/jquery-asGradient.js"></script>
+        <script src="~/plugins/bower_components/jquery-asColorPicker-master/dist/jquery-asColorPicker.min.js"></script>
+        <!-- Date Picker Plugin JavaScript -->
+        <script src="~/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+        <!-- Date range Plugin JavaScript -->
+        <script src="~/plugins/bower_components/timepicker/bootstrap-timepicker.min.js"></script>
+        <script src="~/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+
         <!-- start - This is for export functionality only -->
         <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
@@ -354,6 +383,16 @@
         <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
         <!-- end - This is for export functionality only -->
+
+        <script>
+            $('.mydatepicker').datepicker();
+
+            $('.clockpicker').clockpicker({
+                donetext: 'Done',
+
+            });
+
+        </script>
 
 </body>
 

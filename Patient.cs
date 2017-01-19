@@ -17,6 +17,8 @@ namespace HospitalManagament
         public long Id { get; set; }
         public string Disease { get; set; }
         public string Occupation { get; set; }
+        public Nullable<System.DateTime> EntryDate { get; set; }
+        public Nullable<System.TimeSpan> EntryTime { get; set; }
     
         public virtual User User { get; set; }
         public virtual Caregiver Caregiver { get; set; }
