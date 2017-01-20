@@ -134,39 +134,41 @@ namespace HospitalManagament.Controllers
         }
 
         [HttpGet]
-        public ActionResult CountGenderPerMonth()
+        public ActionResult CountGenderPerMonthHollow()
         {
             HospitalManagementContext dataContext = new HospitalManagementContext();
 
-            List<CountGendersPerMonth> GenderMonth = dataContext.Database.SqlQuery<CountGendersPerMonth>("Select u.Gender, p.EntryDate ActualDate, datename(month, DATEPART(MONTH, p.EntryDate)) month, DATEPART(MONTH, p.EntryDate) monthnumber, COUNT(p.User_Id) count from [HospitalManagement].[dbo].[Patients] p,[HospitalManagement].[dbo].[Users] u where u.Id = p.User_Id group by DATEPART(MONTH, p.EntryDate), p.EntryDate, u.Gender").ToList();
-
-            // Create months list
-            var labels = new List<string>() { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-
-            var MaleCount = new List<int>() { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-
-            var FemaleCount = new List<int>() { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-
-            for (int i = 0; i < GenderMonth.Count; i++)
+            List<CountGendersPerMonth> GenderMonthFinal = new List<CountGendersPerMonth>()
             {
-                if (GenderMonth[i].Gender == "Male")
+                new CountGendersPerMonth(0 , 0, "January"),
+                new CountGendersPerMonth(0 , 0, "February"),
+                new CountGendersPerMonth(0 , 0, "March"),
+                new CountGendersPerMonth(0 , 0, "April"),
+                new CountGendersPerMonth(0 , 0, "May"),
+                new CountGendersPerMonth(0 , 0, "June"),
+                new CountGendersPerMonth(0 , 0, "July"),
+                new CountGendersPerMonth(0 , 0, "August"),
+                new CountGendersPerMonth(0 , 0, "September"),
+                new CountGendersPerMonth(0 , 0, "October"),
+                new CountGendersPerMonth(0 , 0, "November"),
+                new CountGendersPerMonth(0 , 0, "December")
+            };
+
+            List<CountGendersPerMonth> GenderMonth = dataContext.Database.SqlQuery<CountGendersPerMonth>("select datename(month, p.EntryDate) Month, count(case when u.Gender = 'Female' then 1 end) FemaleCount, count(case when u.Gender = 'Male' then 1 end) MaleCount from [HospitalManagement].[dbo].[Patients] p left join [HospitalManagement].[dbo].[Users] u on p.User_Id = u.Id group by datename(month, p.EntryDate); ").ToList();
+
+            for (int i = 0; i < GenderMonthFinal.Count; i++)
+            {
+                for (int j = 0; j < GenderMonth.Count; j++ )
                 {
-                    MaleCount[GenderMonth[i].MonthNumber - 1] = GenderMonth[i].Count;
-                }
-                else
-                {
-                    FemaleCount[GenderMonth[i].MonthNumber - 1] = GenderMonth[i].Count;
+                    if (GenderMonth[j].Month == GenderMonthFinal[i].Month)
+                    {
+                        GenderMonthFinal[i].MaleCount = GenderMonth[j].MaleCount;
+                        GenderMonthFinal[i].FemaleCount = GenderMonth[j].FemaleCount;
+                    }
                 }
             }
 
-            //return Json(new
-            //{
-            //    labels = labels,
-            //    MaleCount = MaleCount,
-            //    FemaleCount = FemaleCount
-            //}, JsonRequestBehavior.AllowGet);
-
-            return Json(GenderMonth, JsonRequestBehavior.AllowGet);
+            return Content(JsonConvert.SerializeObject(GenderMonthFinal), "application/json");
         }
     }
 }

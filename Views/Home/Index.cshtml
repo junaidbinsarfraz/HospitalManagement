@@ -5,24 +5,36 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="white-box">
-            <h3 class="box-title">Patients Genders Per Month</h3>
-            <ul class="list-inline text-center">
+            @*<h3 class="box-title">Patients Genders Per Month</h3>
+                <ul class="list-inline text-center">
+                    <li>
+                        <h5><i class="fa fa-circle m-r-5" style="color: #35d6ff;"></i>MALE</h5>
+                    </li>
+                    <li>
+                        <h5><i class="fa fa-circle m-r-5" style="color: #7835ff;"></i>FEMALE</h5>
+                    </li>
+                </ul>
+                <div>
+                    <canvas id="CountGenderPerMonth" height="150"></canvas>
+                </div>*@
+
+            <h3 class="box-title">Patient Gender line Chart</h3>
+            <ul class="list-inline text-right">
                 <li>
-                    <h5><i class="fa fa-circle m-r-5" style="color: #35d6ff;"></i>MALE</h5>
+                    <h5><i class="fa fa-circle m-r-5" style="color: #00bfc7;"></i>Male</h5>
                 </li>
                 <li>
-                    <h5><i class="fa fa-circle m-r-5" style="color: #7835ff;"></i>FEMALE</h5>
+                    <h5><i class="fa fa-circle m-r-5" style="color: #9675ce;"></i>Female</h5>
                 </li>
             </ul>
-            <div>
-                <canvas id="CountGenderPerMonth" height="150"></canvas>
-            </div>
+            <div id="morris-area-chart"></div>
+
         </div>
     </div>
     <div class="col-sm-6">
         <div class="white-box" style="height:507px">
             @*<h3 class="box-title">New Patient List</h3>
-            <p class="text-muted">this is the sample data here for crm</p>*@
+                <p class="text-muted">this is the sample data here for crm</p>*@
 
             <div class="r-icon-stats">
                 <i class="ti-user bg-megna"></i>
@@ -90,7 +102,7 @@
     <div class="col-sm-6">
         <div class="white-box" style="height:507px">
             @*<h3 class="box-title">New Patient List</h3>
-            <p class="text-muted">this is the sample data here for crm</p>*@
+                <p class="text-muted">this is the sample data here for crm</p>*@
 
             <div class="r-icon-stats">
                 <i class="ti-user bg-megna"></i>
@@ -156,7 +168,7 @@
     <div class="col-sm-6">
         <div class="white-box" style="height:507px">
             @*<h3 class="box-title">New Patient List</h3>
-            <p class="text-muted">this is the sample data here for crm</p>*@
+                <p class="text-muted">this is the sample data here for crm</p>*@
 
             <div class="r-icon-stats">
                 <i class="ti-user bg-megna"></i>
@@ -203,13 +215,45 @@
     <script src="~/plugins/bower_components/Chart.js/Chart.min.js"></script>
 
     <script>
+
         // Send ajax call
         $.ajax({
+            url: '@Url.Action("CountGenderPerMonthHollow", "Home")',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+
+                Morris.Area({
+                    element: 'morris-area-chart',
+                    data: data,
+                    xkey: 'Month',
+                    ykeys: ['MaleCount', 'FemaleCount'],
+                    labels: ['Male', 'Female'],
+                    pointSize: 3,
+                    fillOpacity: 0,
+                    pointStrokeColors: ['#00bfc7', '#9675ce'],
+                    behaveLikeLine: true,
+                    gridLineColor: '#e0e0e0',
+                    lineWidth: 1,
+                    hideHover: 'auto',
+                    lineColors: ['#00bfc7', '#9675ce'],
+                    resize: true,
+                    parseTime: false
+
+                });
+            },
+            error: function () {
+                alert("Error");
+            }
+        });
+
+        // Send ajax call
+        @*$.ajax({
             url: '@Url.Action("CountGenderPerMonth", "Home")',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (data) {
-                
+
                 var ctx1 = document.getElementById("CountGenderPerMonth").getContext("2d");
                 var data1 = {
                     labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
@@ -260,6 +304,6 @@
             error: function () {
                 alert("Error");
             }
-        });
+        });*@
     </script>
 }

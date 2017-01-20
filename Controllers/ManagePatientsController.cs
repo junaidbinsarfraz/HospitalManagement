@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Globalization;
 
 namespace HospitalManagament.Controllers
 {
@@ -49,6 +50,8 @@ namespace HospitalManagament.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                user.Patient.EntryDate = DateTime.ParseExact(user.Patient.EntryDateStr, "MM/dd/yyyy", CultureInfo.InvariantCulture);
 
                 // add role as patient 
                 user.Role = db.Roles.ToList().Where(u => u.Name == "Patient").FirstOrDefault();

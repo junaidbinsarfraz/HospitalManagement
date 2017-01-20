@@ -26,6 +26,7 @@
           <ScalarProperty Name="Occupation" ColumnName="Occupation" />
           <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
           <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
+          <ScalarProperty Name="EntryDateStr" ColumnName="EntryDateStr" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

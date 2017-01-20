@@ -2,9 +2,21 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/19/2017 09:38:12
+-- Date Created: 01/20/2017 14:10:52
 -- Generated from EDMX file: D:\Junaid\Github\HospitalManagement\HospitalManagement.edmx
 -- --------------------------------------------------
+
+USE master
+GO
+
+--Create a database
+IF EXISTS(SELECT name FROM sys.databases
+    WHERE name = 'HospitalManagement')
+    DROP DATABASE HospitalManagement
+GO
+
+CREATE DATABASE HospitalManagement
+GO
 
 SET QUOTED_IDENTIFIER OFF;
 GO
@@ -81,6 +93,7 @@ CREATE TABLE [dbo].[Patients] (
     [Occupation] nvarchar(max)  NULL,
     [EntryDate] datetime  NULL,
     [EntryTime] time  NULL,
+    [EntryDateStr] nvarchar(max)  NULL,
     [User_Id] bigint  NOT NULL
 );
 GO
