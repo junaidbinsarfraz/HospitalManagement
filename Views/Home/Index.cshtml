@@ -2,6 +2,56 @@
     ViewBag.Title = "Home Page";
 }
 
+<script>
+    // Send ajax call
+    $.ajax({
+        url: '@Url.Action("GetUpdatedCountsAndList", "Home")',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+
+        },
+        error: function () {
+            alert("Error");
+        }
+    });
+</script>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="white-box analytics-info">
+            <h3 class="box-title">Total Patients</h3>
+            <ul class="list-inline two-part">
+                <li>
+                    <div id="sparklinedash1"></div>
+                </li>
+                <li class="text-right"><i class="ti-arrow-up text-success"></i> <span class="counter text-success">@Html.Raw(HttpContext.Current.Session["TotalPatients"].ToString())</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="white-box analytics-info">
+            <h3 class="box-title">Total Doctors</h3>
+            <ul class="list-inline two-part">
+                <li>
+                    <div id="sparklinedash2"></div>
+                </li>
+                <li class="text-right"><i class="ti-arrow-up text-purple"></i> <span class="counter text-purple">@Html.Raw(HttpContext.Current.Session["TotalDoctors"].ToString())</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="white-box analytics-info">
+            <h3 class="box-title">Total Caregivers</h3>
+            <ul class="list-inline two-part">
+                <li>
+                    <div id="sparklinedash3"></div>
+                </li>
+                <li class="text-right"><i class="ti-arrow-up text-info"></i> <span class="counter text-info">@Html.Raw(HttpContext.Current.Session["TotalCaregivers"].ToString())</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-sm-6">
         <div class="white-box">
@@ -31,181 +81,106 @@
 
         </div>
     </div>
-    <div class="col-sm-6">
-        <div class="white-box" style="height:507px">
-            @*<h3 class="box-title">New Patient List</h3>
-                <p class="text-muted">this is the sample data here for crm</p>*@
 
-            <div class="r-icon-stats">
-                <i class="ti-user bg-megna"></i>
-                <div class="bodystate">
-                    <h4>@Html.Raw(HttpContext.Current.Session["TotalPatients"].ToString())</h4>
-                    <span class="text-muted">Total Patients</span>
+    <div class="col-sm-6">
+        <div class="white-box">
+            <h3 class="box-title">Patients Illness Percentage</h3>
+            <canvas id="disease-comparison" height="210"></canvas>
+        </div>
+    </div>
+    @*<div class="col-sm-6">
+            <div class="white-box" style="height:507px">
+                <div class="r-icon-stats">
+                    <i class="ti-user bg-megna"></i>
+                    <div class="bodystate">
+                        <h4>@Html.Raw(HttpContext.Current.Session["TotalCaregivers"].ToString())</h4>
+                        <span class="text-muted">Total Caregivers</span>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>User Name</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach (var item in (List<HospitalManagament.User>)HttpContext.Current.Session["TotalCaregiverList"])
+                                {
+                                    <tr>
+                                        <td>@item.UserName</td>
+                                        <td>@item.FullName</td>
+                                        <td>@item.Email</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>*@
+
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="white-box" style="height:507px">
+            <h4>Patients</h4>
 
             <div class="table-responsive">
-                <table class="table">
+                <table id="patient-table" class="table">
                     <thead>
                         <tr>
-                            <th>User Name</th>
-                            <th>Full Name</th>
-                            <th>Occupation</th>
-                            <th>Diseases</th>
+                            <th class="no-sort">#</th>
+                            <th class="no-sort">User Name</th>
+                            <th class="no-sort">Full Name</th>
+                            <th class="no-sort">Occupation</th>
+                            <th class="no-sort">Illness</th>
                         </tr>
                     </thead>
                     <tbody>
                         @{
+                            int i = 1;
                             foreach (var item in (List<HospitalManagament.User>)HttpContext.Current.Session["TotalPatientList"])
                             {
                                 <tr>
+                                    <td>@i</td>
                                     <td>@item.UserName</td>
                                     <td>@item.FullName</td>
                                     <td>@item.Patient.Occupation</td>
-                                    <td>@item.Patient.Disease</td>
+                                    <td>
+                                        @{
+                                            if (i % 4 == 0)
+                                            {
+                                                <span class="label label-danger">@item.Patient.Disease</span>
+                                            }
+                                            else if (i % 4 == 1)
+                                            {
+                                                <span class="label label-info">@item.Patient.Disease</span>
+                                            }
+                                            else if (i % 4 == 2)
+                                            {
+                                                <span class="label label-warning">@item.Patient.Disease</span>
+                                            }
+                                            else if (i % 4 == 3)
+                                            {
+                                                <span class="label label-success">@item.Patient.Disease</span>
+                                            }
+                                        }
+                                    </td>
                                 </tr>
-                            }
+                                                i++;
+                                            }
                         }
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
-</div>
-
-<div class="row">
-    <div class="col-sm-6">
-        <div class="white-box">
-            <h3 class="box-title">Caregivers</h3>
-            <ul class="list-inline text-center">
-                <li>
-                    <h5><i class="fa fa-circle m-r-5" style="color: #00bfc7;"></i>Free</h5>
-                </li>
-                <li>
-                    <h5><i class="fa fa-circle m-r-5" style="color: #b4becb;"></i>Engaged</h5>
-                </li>
-            </ul>
-            <div id="morris-area-chart1" style="height: 370px; position: relative;">
-                <svg height="370" version="1.1" width="482" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; top: -0.599976px;"><desc>Created with Raphaël 2.1.2</desc><defs></defs><text style="text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="36.5" y="331" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal"><tspan dy="4">0</tspan></text><path style="" fill="none" stroke="#e0e0e0" d="M49,331H457" stroke-width="0.5"></path><text style="text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="36.5" y="254.5" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal"><tspan dy="4">75</tspan></text><path style="" fill="none" stroke="#e0e0e0" d="M49,254.5H457" stroke-width="0.5"></path><text style="text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="36.5" y="178" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal"><tspan dy="4">150</tspan></text><path style="" fill="none" stroke="#e0e0e0" d="M49,178H457" stroke-width="0.5"></path><text style="text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="36.5" y="101.5" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal"><tspan dy="4">225</tspan></text><path style="" fill="none" stroke="#e0e0e0" d="M49,101.5H457" stroke-width="0.5"></path><text style="text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="36.5" y="25" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal"><tspan dy="4">300</tspan></text><path style="" fill="none" stroke="#e0e0e0" d="M49,25H457" stroke-width="0.5"></path><text style="text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="427.85714285714283" y="343.5" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4">2016</tspan></text><text style="text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="311.2857142857143" y="343.5" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4">2014</tspan></text><text style="text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="194.71428571428572" y="343.5" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4">2012</tspan></text><text style="text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="78.14285714285714" y="343.5" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4">2010</tspan></text><rect x="56.285714285714285" y="290.2" width="20.357142857142858" height="40.80000000000001" rx="0" ry="0" fill="#469fb4" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="79.64285714285714" y="280" width="20.357142857142858" height="51" rx="0" ry="0" fill="#01c0c8" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="114.57142857142856" y="198.4" width="20.357142857142858" height="132.6" rx="0" ry="0" fill="#469fb4" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="137.92857142857142" y="229" width="20.357142857142858" height="102" rx="0" ry="0" fill="#01c0c8" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="172.85714285714283" y="300.4" width="20.357142857142858" height="30.600000000000023" rx="0" ry="0" fill="#469fb4" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="196.2142857142857" y="269.8" width="20.357142857142858" height="61.19999999999999" rx="0" ry="0" fill="#01c0c8" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="231.14285714285714" y="300.4" width="20.357142857142858" height="30.600000000000023" rx="0" ry="0" fill="#469fb4" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="254.5" y="127" width="20.357142857142858" height="204" rx="0" ry="0" fill="#01c0c8" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="289.4285714285714" y="127" width="20.357142857142858" height="204" rx="0" ry="0" fill="#469fb4" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="312.7857142857142" y="178" width="20.357142857142858" height="153" rx="0" ry="0" fill="#01c0c8" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="347.7142857142857" y="223.89999999999998" width="20.357142857142858" height="107.10000000000002" rx="0" ry="0" fill="#469fb4" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="371.07142857142856" y="239.2" width="20.357142857142858" height="91.80000000000001" rx="0" ry="0" fill="#01c0c8" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="406" y="76" width="20.357142857142858" height="255" rx="0" ry="0" fill="#469fb4" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="429.35714285714283" y="178" width="20.357142857142858" height="153" rx="0" ry="0" fill="#01c0c8" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect></svg><div class="morris-hover morris-default-style" style="left: 212.5px; top: 140px; display: none;">
-                    <div class="morris-hover-row-label">2013</div><div class="morris-hover-point" style="color: #469fb4">
-                        OPD:
-                        30
-                    </div><div class="morris-hover-point" style="color: #01c0c8">
-                        ICU:
-                        200
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="white-box" style="height:507px">
-            @*<h3 class="box-title">New Patient List</h3>
-                <p class="text-muted">this is the sample data here for crm</p>*@
-
-            <div class="r-icon-stats">
-                <i class="ti-user bg-megna"></i>
-                <div class="bodystate">
-                    <h4>@Html.Raw(HttpContext.Current.Session["TotalCaregivers"].ToString())</h4>
-                    <span class="text-muted">Total Caregivers</span>
-                </div>
-            </div>
-
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>User Name</th>
-                            <th>Full Name</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @{
-                            foreach (var item in (List<HospitalManagament.User>)HttpContext.Current.Session["TotalCaregiverList"])
-                            {
-                                <tr>
-                                    <td>@item.UserName</td>
-                                    <td>@item.FullName</td>
-                                    <td>@item.Email</td>
-                                </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<div class="row">
-    <div class="col-sm-6">
-        <div class="white-box">
-            <h3 class="box-title">Doctors</h3>
-            <ul class="list-inline text-center">
-                <li>
-                    <h5><i class="fa fa-circle m-r-5" style="color: #00bfc7;"></i>Not Speclized</h5>
-                </li>
-                <li>
-                    <h5><i class="fa fa-circle m-r-5" style="color: #b4becb;"></i>Speclized</h5>
-                </li>
-            </ul>
-            <div id="morris-area-chart1" style="height: 370px; position: relative;">
-                <svg height="370" version="1.1" width="482" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; top: -0.599976px;"><desc>Created with Raphaël 2.1.2</desc><defs></defs><text style="text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="36.5" y="331" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal"><tspan dy="4">0</tspan></text><path style="" fill="none" stroke="#e0e0e0" d="M49,331H457" stroke-width="0.5"></path><text style="text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="36.5" y="254.5" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal"><tspan dy="4">75</tspan></text><path style="" fill="none" stroke="#e0e0e0" d="M49,254.5H457" stroke-width="0.5"></path><text style="text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="36.5" y="178" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal"><tspan dy="4">150</tspan></text><path style="" fill="none" stroke="#e0e0e0" d="M49,178H457" stroke-width="0.5"></path><text style="text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="36.5" y="101.5" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal"><tspan dy="4">225</tspan></text><path style="" fill="none" stroke="#e0e0e0" d="M49,101.5H457" stroke-width="0.5"></path><text style="text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="36.5" y="25" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal"><tspan dy="4">300</tspan></text><path style="" fill="none" stroke="#e0e0e0" d="M49,25H457" stroke-width="0.5"></path><text style="text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="427.85714285714283" y="343.5" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4">2016</tspan></text><text style="text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="311.2857142857143" y="343.5" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4">2014</tspan></text><text style="text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="194.71428571428572" y="343.5" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4">2012</tspan></text><text style="text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="78.14285714285714" y="343.5" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4">2010</tspan></text><rect x="56.285714285714285" y="290.2" width="20.357142857142858" height="40.80000000000001" rx="0" ry="0" fill="#469fb4" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="79.64285714285714" y="280" width="20.357142857142858" height="51" rx="0" ry="0" fill="#01c0c8" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="114.57142857142856" y="198.4" width="20.357142857142858" height="132.6" rx="0" ry="0" fill="#469fb4" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="137.92857142857142" y="229" width="20.357142857142858" height="102" rx="0" ry="0" fill="#01c0c8" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="172.85714285714283" y="300.4" width="20.357142857142858" height="30.600000000000023" rx="0" ry="0" fill="#469fb4" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="196.2142857142857" y="269.8" width="20.357142857142858" height="61.19999999999999" rx="0" ry="0" fill="#01c0c8" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="231.14285714285714" y="300.4" width="20.357142857142858" height="30.600000000000023" rx="0" ry="0" fill="#469fb4" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="254.5" y="127" width="20.357142857142858" height="204" rx="0" ry="0" fill="#01c0c8" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="289.4285714285714" y="127" width="20.357142857142858" height="204" rx="0" ry="0" fill="#469fb4" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="312.7857142857142" y="178" width="20.357142857142858" height="153" rx="0" ry="0" fill="#01c0c8" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="347.7142857142857" y="223.89999999999998" width="20.357142857142858" height="107.10000000000002" rx="0" ry="0" fill="#469fb4" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="371.07142857142856" y="239.2" width="20.357142857142858" height="91.80000000000001" rx="0" ry="0" fill="#01c0c8" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="406" y="76" width="20.357142857142858" height="255" rx="0" ry="0" fill="#469fb4" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect><rect x="429.35714285714283" y="178" width="20.357142857142858" height="153" rx="0" ry="0" fill="#01c0c8" stroke="none" style="fill-opacity: 1;" fill-opacity="1"></rect></svg><div class="morris-hover morris-default-style" style="left: 212.5px; top: 140px; display: none;">
-                    <div class="morris-hover-row-label">2013</div><div class="morris-hover-point" style="color: #469fb4">
-                        OPD:
-                        30
-                    </div><div class="morris-hover-point" style="color: #01c0c8">
-                        ICU:
-                        200
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="white-box" style="height:507px">
-            @*<h3 class="box-title">New Patient List</h3>
-                <p class="text-muted">this is the sample data here for crm</p>*@
-
-            <div class="r-icon-stats">
-                <i class="ti-user bg-megna"></i>
-                <div class="bodystate">
-                    <h4>@Html.Raw(HttpContext.Current.Session["TotalDoctors"].ToString())</h4>
-                    <span class="text-muted">Total Doctors</span>
-                </div>
-            </div>
-
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>User Name</th>
-                            <th>Full Name</th>
-                            <th>Designation</th>
-                            <th>Specialization</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @{
-                            foreach (var item in (List<HospitalManagament.User>)HttpContext.Current.Session["TotalDoctorList"])
-                            {
-                                <tr>
-                                    <td>@item.UserName</td>
-                                    <td>@item.FullName</td>
-                                    <td>@item.Doctor.Designation</td>
-                                    <td>@item.Doctor.Specialization</td>
-                                </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
 </div>
 
 @section Scripts
@@ -213,6 +188,9 @@
     <!-- Chart JS -->
     @*<script src="~/plugins/bower_components/Chart.js/chartjs.init.js"></script>*@
     <script src="~/plugins/bower_components/Chart.js/Chart.min.js"></script>
+
+    <!-- jQuery peity -->
+    <script src="~/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
 
     <script>
 
@@ -241,6 +219,35 @@
                     parseTime: false
 
                 });
+            },
+            error: function () {
+                alert("Error");
+            }
+        });
+
+        // Send ajax call
+        $.ajax({
+            url: '@Url.Action("PatientDiseasePercentage", "Home")',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+
+                var ctx3 = document.getElementById("disease-comparison").getContext("2d");
+                var data3 = data;
+
+                var myPieChart = new Chart(ctx3).Pie(data3, {
+                    segmentShowStroke: true,
+                    segmentStrokeColor: "#fff",
+                    segmentStrokeWidth: 0.1,
+                    animationSteps: 100,
+                    tooltipCornerRadius: 2,
+                    animationEasing: "easeOutBounce",
+                    animateRotate: true,
+                    animateScale: false,
+                    legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
+                    responsive: true
+                });
+
             },
             error: function () {
                 alert("Error");
@@ -305,5 +312,40 @@
                 alert("Error");
             }
         });*@
+
+        $('#sparklinedash1').sparkline([0, 5, 6, 10, 9, 12, 4, 9], {
+            type: 'bar',
+            height: '30',
+            barWidth: '4',
+            resize: true,
+            barSpacing: '5',
+            barColor: '#00c292'
+        });
+        $('#sparklinedash2').sparkline([0, 5, 6, 10, 9, 12, 4, 9], {
+            type: 'bar',
+            height: '30',
+            barWidth: '4',
+            resize: true,
+            barSpacing: '5',
+            barColor: '#ab8ce4'
+        });
+        $('#sparklinedash3').sparkline([0, 5, 6, 10, 9, 12, 4, 9], {
+            type: 'bar',
+            height: '30',
+            barWidth: '4',
+            resize: true,
+            barSpacing: '5',
+            barColor: '#03a9f3'
+        });
+
+        $(document).ready(function () {
+            $('#patient-table').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                ],
+                pageLength: 5
+            });
+        });
+
     </script>
 }

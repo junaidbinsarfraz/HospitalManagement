@@ -74,6 +74,18 @@ namespace HospitalManagament.Controllers
 
                 User newUser = db.Users.ToList().Last();
 
+                User Admin = (User)HttpContext.Session["LoggedInUser"];
+
+                if (Admin != null && Admin.Role.Name == "Admin")
+                {
+                    HttpContext.Session["TotalPatientList"] = db.Users.Include(u => u.Patient).Where(u => u.Patient != null).ToList();
+                    HttpContext.Session["TotalPatients"] = db.Users.Count(u => u.Patient != null);
+                    HttpContext.Session["TotalCaregiverList"] = db.Users.Include(u => u.Caregiver).Where(u => u.Caregiver != null).ToList();
+                    HttpContext.Session["TotalCareGivers"] = db.Users.Count(u => u.Caregiver != null);
+                    HttpContext.Session["TotalDoctorList"] = db.Users.Include(u => u.Doctor).Where(u => u.Doctor != null).ToList();
+                    HttpContext.Session["TotalDoctors"] = db.Users.Count(u => u.Doctor != null);
+                }
+
                 return RedirectToAction("Index");
             }
 
@@ -134,6 +146,7 @@ namespace HospitalManagament.Controllers
                 oldUser.Email = user.Email;
                 oldUser.Gender = user.Gender;
                 oldUser.Address = user.Address;
+                oldUser.Comments = user.Comments;
                 //oldUser.Caregiver.Patient = db.Patients.ToList().Where(u => u.Id == user.Patient.Id).FirstOrDefault();
 
                 db.SaveChanges();
@@ -159,6 +172,7 @@ namespace HospitalManagament.Controllers
                             oldUser.Email = user.Email;
                             oldUser.Gender = user.Gender;
                             oldUser.Address = user.Address;
+                            oldUser.Comments = user.Comments;
                             //oldUser.Caregiver.Patient = db.Patients.ToList().Where(u => u.Id == user.Patient.Id).FirstOrDefault();
 
                             db.SaveChanges();

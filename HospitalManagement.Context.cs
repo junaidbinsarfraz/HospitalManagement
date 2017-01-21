@@ -30,5 +30,6 @@ namespace HospitalManagament
         public virtual DbSet<Caregiver> Caregivers { get; set; }
         public virtual DbSet<Doctor> Doctors { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
     }
 }

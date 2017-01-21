@@ -57,6 +57,7 @@ namespace HospitalManagament.Controllers
                 oldUser.Email = user.Email;
                 oldUser.Gender = user.Gender;
                 oldUser.Address = user.Address;
+                oldUser.Comments = user.Comments;
                 oldUser.Doctor.Specialization = user.Doctor.Specialization;
                 oldUser.Doctor.Designation = user.Doctor.Designation;
 

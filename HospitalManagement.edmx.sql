@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/20/2017 14:10:52
--- Generated from EDMX file: D:\Junaid\Github\HospitalManagement\HospitalManagement.edmx
+-- Date Created: 01/21/2017 14:07:56
+-- Generated from EDMX file: E:\Github\HospitalManagement\HospitalManagement.edmx
 -- --------------------------------------------------
 
 USE master
@@ -44,6 +44,12 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_UserRole]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_UserRole];
 GO
+IF OBJECT_ID(N'[dbo].[FK_DoctorMessage]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Messages] DROP CONSTRAINT [FK_DoctorMessage];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PatientMessage]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Messages] DROP CONSTRAINT [FK_PatientMessage];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -63,6 +69,9 @@ IF OBJECT_ID(N'[dbo].[Doctors]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Roles]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Roles];
+GO
+IF OBJECT_ID(N'[dbo].[Messages]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Messages];
 GO
 
 -- --------------------------------------------------
@@ -122,6 +131,15 @@ CREATE TABLE [dbo].[Roles] (
 );
 GO
 
+-- Creating table 'Messages'
+CREATE TABLE [dbo].[Messages] (
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [Text] nvarchar(max)  NULL,
+    [DoctorId] bigint  NOT NULL,
+    [PatientId] bigint  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -153,6 +171,12 @@ GO
 -- Creating primary key on [Id] in table 'Roles'
 ALTER TABLE [dbo].[Roles]
 ADD CONSTRAINT [PK_Roles]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Messages'
+ALTER TABLE [dbo].[Messages]
+ADD CONSTRAINT [PK_Messages]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -233,6 +257,36 @@ GO
 CREATE INDEX [IX_FK_UserRole]
 ON [dbo].[Users]
     ([Role_Id]);
+GO
+
+-- Creating foreign key on [DoctorId] in table 'Messages'
+ALTER TABLE [dbo].[Messages]
+ADD CONSTRAINT [FK_DoctorMessage]
+    FOREIGN KEY ([DoctorId])
+    REFERENCES [dbo].[Doctors]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DoctorMessage'
+CREATE INDEX [IX_FK_DoctorMessage]
+ON [dbo].[Messages]
+    ([DoctorId]);
+GO
+
+-- Creating foreign key on [PatientId] in table 'Messages'
+ALTER TABLE [dbo].[Messages]
+ADD CONSTRAINT [FK_PatientMessage]
+    FOREIGN KEY ([PatientId])
+    REFERENCES [dbo].[Patients]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PatientMessage'
+CREATE INDEX [IX_FK_PatientMessage]
+ON [dbo].[Messages]
+    ([PatientId]);
 GO
 
 -- --------------------------------------------------

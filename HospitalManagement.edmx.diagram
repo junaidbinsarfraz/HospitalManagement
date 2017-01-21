@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3efaf5673cf6429e8dc61b5afb44bd9a" Name="Diagram1" ZoomLevel="92" >
+      <Diagram DiagramId="3efaf5673cf6429e8dc61b5afb44bd9a" Name="Diagram1" ZoomLevel="100" >
         <EntityTypeShape EntityType="HospitalManagement.User" Width="1.5" PointX="7" PointY="0.5" />
         <EntityTypeShape EntityType="HospitalManagement.Patient" Width="1.5" PointX="7.125" PointY="4.875" />
         <EntityTypeShape EntityType="HospitalManagement.Caregiver" Width="1.5" PointX="9.75" PointY="4.625" />
@@ -15,6 +15,9 @@
         <AssociationConnector Association="HospitalManagement.PatientCaregiver" />
         <EntityTypeShape EntityType="HospitalManagement.Role" Width="1.5" PointX="10.125" PointY="0.5" />
         <AssociationConnector Association="HospitalManagement.UserRole" />
+        <EntityTypeShape EntityType="HospitalManagement.Message" Width="1.5" PointX="3.5" PointY="7.5" />
+        <AssociationConnector Association="HospitalManagement.DoctorMessage" />
+        <AssociationConnector Association="HospitalManagement.PatientMessage" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

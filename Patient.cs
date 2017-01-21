@@ -14,6 +14,12 @@ namespace HospitalManagament
     
     public partial class Patient
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Patient()
+        {
+            this.Messages = new HashSet<Message>();
+        }
+    
         public long Id { get; set; }
         public string Disease { get; set; }
         public string Occupation { get; set; }
@@ -23,5 +29,7 @@ namespace HospitalManagament
     
         public virtual User User { get; set; }
         public virtual Caregiver Caregiver { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Message> Messages { get; set; }
     }
 }

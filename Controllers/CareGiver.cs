@@ -57,6 +57,7 @@ namespace HospitalManagament.Controllers
                 oldUser.Email = user.Email;
                 oldUser.Gender = user.Gender;
                 oldUser.Address = user.Address;
+                oldUser.Comments = user.Comments;
                 // oldUser.Caregiver.Patient = db.Patients.ToList().Where(u => u.Id == user.Patient.Id).FirstOrDefault();
 
                 db.SaveChanges();

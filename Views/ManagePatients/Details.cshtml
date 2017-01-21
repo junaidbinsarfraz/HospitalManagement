@@ -77,6 +77,19 @@
                 <p class="m-t-30">
                     @Model.Comments
                 </p>
+                <h4 class="m-t-30">ECG Report</h4>
+                <hr>
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <h6>Pulse</h6> <b>85</b>
+                    </div>
+                    <div class="stat-item">
+                        <h6>BP</h6> <b>120</b>
+                    </div>
+                </div>
+                <div style="height: 280px;">
+                    <div id="placeholder" class="demo-placeholder"></div>
+                </div>
             </div>
         </div>
 
@@ -86,3 +99,106 @@
         @Html.ActionLink("Back to List", "Index")
     </p>
 </div>
+
+@section Scripts
+{
+    <!-- Flot Charts JavaScript -->
+    <script src="~/plugins/bower_components/flot/jquery.flot.js"></script>
+    <script src="~/plugins/bower_components/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+
+    <script type="text/javascript">
+        // Real Time chart
+
+
+        var data = [],
+            totalPoints = 200;
+
+        function getRandomData() {
+
+            if (data.length > 0)
+                data = data.slice(1);
+
+            // Do a random walk
+
+            while (data.length < totalPoints) {
+
+                var prev = data.length > 0 ? data[data.length - 1] : 50,
+                    y = prev + Math.random() * 10 - 5;
+
+                if (y < 0) {
+                    y = 0;
+                } else if (y > 100) {
+                    y = 100;
+                }
+
+                data.push(y);
+            }
+
+            // Zip the generated y values with the x values
+
+            var res = [];
+            for (var i = 0; i < data.length; ++i) {
+                res.push([i, data[i]])
+            }
+
+            return res;
+        }
+
+        // Set up the control widget
+
+        var updateInterval = 20;
+        $("#updateInterval").val(updateInterval).change(function () {
+            var v = $(this).val();
+            if (v && !isNaN(+v)) {
+                updateInterval = +v;
+                if (updateInterval < 1) {
+                    updateInterval = 1;
+                } else if (updateInterval > 2000) {
+                    updateInterval = 2000;
+                }
+                $(this).val("" + updateInterval);
+            }
+        });
+
+        var plot = $.plot("#placeholder", [getRandomData()], {
+            series: {
+                shadowSize: 0   // Drawing is faster without shadows
+            },
+            yaxis: {
+                min: 0,
+                max: 200
+            },
+            xaxis: {
+                show: false
+            },
+            colors: ["#01c0c8"],
+            grid: {
+                color: "#AFAFAF",
+                hoverable: true,
+                borderWidth: 0,
+                backgroundColor: '#FFF'
+            },
+            tooltip: true,
+            resize: true,
+            tooltipOpts: {
+                content: "Y: %y",
+                defaultTheme: false
+            }
+
+
+        });
+
+        function update() {
+
+            plot.setData([getRandomData()]);
+
+            // Since the axes don't change, we don't need to call plot.setupGrid()
+
+            plot.draw();
+            setTimeout(update, updateInterval);
+        }
+
+        update();
+    </script>
+
+}

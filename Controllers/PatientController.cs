@@ -59,6 +59,7 @@ namespace HospitalManagament.Controllers
                 oldUser.Patient.Occupation = user.Patient.Occupation;
                 oldUser.Gender = user.Gender;
                 oldUser.Address = user.Address;
+                oldUser.Comments = user.Comments;
 
                 db.SaveChanges();
 

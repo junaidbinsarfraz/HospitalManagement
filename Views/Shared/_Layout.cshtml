@@ -208,7 +208,7 @@
                     @{
                         if (HttpContext.Current.Session["Role"] == "Admin")
                         {
-                            <li> <a href="../Home/Index" class="waves-effect"><i class="ti-dashboard p-r-10"></i> <span class="hide-menu">Dashboard</span></a> </li>
+                            <li> <a href="../Home/Index?param=@HttpContext.Current.Session["TotalPatients"]" class="waves-effect"><i class="ti-dashboard p-r-10"></i> <span class="hide-menu">Dashboard</span></a> </li>
                         }
 
                         @*else

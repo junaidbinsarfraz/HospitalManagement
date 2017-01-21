@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace HospitalManagament.Controllers
 {
@@ -158,7 +159,7 @@ namespace HospitalManagament.Controllers
 
             for (int i = 0; i < GenderMonthFinal.Count; i++)
             {
-                for (int j = 0; j < GenderMonth.Count; j++ )
+                for (int j = 0; j < GenderMonth.Count; j++)
                 {
                     if (GenderMonth[j].Month == GenderMonthFinal[i].Month)
                     {
@@ -169,6 +170,75 @@ namespace HospitalManagament.Controllers
             }
 
             return Content(JsonConvert.SerializeObject(GenderMonthFinal), "application/json");
+        }
+
+        public ActionResult PatientDiseasePercentage()
+        {
+            HospitalManagementContext DataContext = new HospitalManagementContext();
+
+            List<DiseasePercentage> DiseasePercentages = DataContext.Database.SqlQuery<DiseasePercentage>("select top 5 count(p.Disease) Count, p.Disease Label from[HospitalManagement].[dbo].Patients p group by p.Disease order by count(p.Disease) desc").ToList();
+
+            // Set color of each percecnage section
+
+            int TotalPatients = DataContext.Patients.ToList().Count;
+
+            if (DiseasePercentages.Count > 0)
+            {
+                DiseasePercentages[0].Value = Math.Round(((double)(DiseasePercentages[0].Count) / TotalPatients) * 100, 2);
+                DiseasePercentages[0].Color = "#13dafe";
+                DiseasePercentages[0].Highlight = "#13dafe";
+            }
+            if (DiseasePercentages.Count > 1)
+            {
+                DiseasePercentages[1].Value = Math.Round(((double)(DiseasePercentages[1].Count) / TotalPatients) * 100, 2);
+                DiseasePercentages[1].Color = "#6164c1";
+                DiseasePercentages[1].Highlight = "#6164c1";
+            }
+            if (DiseasePercentages.Count > 2)
+            {
+                DiseasePercentages[2].Value = Math.Round(((double)(DiseasePercentages[2].Count) / TotalPatients) * 100, 2);
+                DiseasePercentages[2].Color = "#99d683";
+                DiseasePercentages[2].Highlight = "#99d683";
+            }
+
+            if (DiseasePercentages.Count > 3)
+            {
+                DiseasePercentages[3].Value = Math.Round(((double)(DiseasePercentages[3].Count) / TotalPatients) * 100, 2);
+                DiseasePercentages[3].Color = "#ffca4a";
+                DiseasePercentages[3].Highlight = "#ffca4a";
+            }
+            if (DiseasePercentages.Count > 4)
+            {
+                DiseasePercentages[4].Value = Math.Round(((double)(DiseasePercentages[4].Count) / TotalPatients) * 100, 2);
+                DiseasePercentages[4].Color = "#4c5667";
+                DiseasePercentages[4].Highlight = "#4c5667";
+            }
+
+            return Content(JsonConvert.SerializeObject(DiseasePercentages), "application/json");
+
+        }
+
+        [HttpGet]
+        public ActionResult GetUpdatedCountsAndList()
+        {
+            User user = (User) HttpContext.Session["LoggedInUser"];
+
+            if (user !=null && user.Role.Name == "Admin")
+            {
+                HospitalManagementContext db = new HospitalManagementContext();
+
+                HttpContext.Session["TotalPatientList"] = db.Users.Include(u => u.Patient).Where(u => u.Patient != null).ToList();
+                HttpContext.Session["TotalPatients"] = db.Users.Count(u => u.Patient != null);
+                HttpContext.Session["TotalCaregiverList"] = db.Users.Include(u => u.Caregiver).Where(u => u.Caregiver != null).ToList();
+                HttpContext.Session["TotalCareGivers"] = db.Users.Count(u => u.Caregiver != null);
+                HttpContext.Session["TotalDoctorList"] = db.Users.Include(u => u.Doctor).Where(u => u.Doctor != null).ToList();
+                HttpContext.Session["TotalDoctors"] = db.Users.Count(u => u.Doctor != null);
+            }
+
+            return Json(new
+            {
+                Status = "updated"
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }
