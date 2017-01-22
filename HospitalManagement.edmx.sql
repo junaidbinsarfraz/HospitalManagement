@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/21/2017 14:07:56
--- Generated from EDMX file: E:\Github\HospitalManagement\HospitalManagement.edmx
+-- Date Created: 01/22/2017 19:10:03
+-- Generated from EDMX file: E:\GithubNew\HospitalManagement\HospitalManagement.edmx
 -- --------------------------------------------------
 
 USE master
@@ -136,7 +136,8 @@ CREATE TABLE [dbo].[Messages] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
     [Text] nvarchar(max)  NULL,
     [DoctorId] bigint  NOT NULL,
-    [PatientId] bigint  NOT NULL
+    [PatientId] bigint  NOT NULL,
+    [FromPatient] bit  NULL
 );
 GO
 

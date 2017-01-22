@@ -18,6 +18,7 @@ namespace HospitalManagament
         public string Text { get; set; }
         public long DoctorId { get; set; }
         public long PatientId { get; set; }
+        public Nullable<bool> FromPatient { get; set; }
     
         public virtual Doctor Doctor { get; set; }
         public virtual Patient Patient { get; set; }

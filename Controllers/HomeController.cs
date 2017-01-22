@@ -57,6 +57,10 @@ namespace HospitalManagament.Controllers
 
                     else if (user.Role.Name == "Patient")
                     {
+                        HttpContext.Session["Patient"] = user.Patient;
+                        HttpContext.Session["PatientId"] = user.Patient.Id;
+                        HttpContext.Session["Doctor"] = null;
+                        HttpContext.Session["DoctorId"] = -1;
                         HttpContext.Session["Role"] = "Patient";
                         return RedirectToAction("Index", "Patient");
                     }
@@ -69,6 +73,10 @@ namespace HospitalManagament.Controllers
 
                     else if (user.Role.Name == "Doctor")
                     {
+                        HttpContext.Session["Patient"] = null;
+                        HttpContext.Session["PatientId"] = -1;
+                        HttpContext.Session["Doctor"] = user.Doctor;
+                        HttpContext.Session["DoctorId"] = user.Doctor.Id;
                         HttpContext.Session["Role"] = "Doctor";
                         return RedirectToAction("Index", "Doctor");
                     }

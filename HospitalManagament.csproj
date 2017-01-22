@@ -155,6 +155,7 @@
     <Compile Include="Controllers\ManageDoctorsController.cs" />
     <Compile Include="Controllers\ManagePatientsController.cs" />
     <Compile Include="Controllers\CareGiver.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Doctor.cs">
       <DependentUpon>HospitalManagement.tt</DependentUpon>
@@ -177,12 +178,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HospitalManagement.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Message.cs">
       <DependentUpon>HospitalManagement.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CountGendersPerMonth.cs" />
     <Compile Include="Models\DiseasePercentage.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\UserConnection.cs" />
     <Compile Include="Patient.cs">
       <DependentUpon>HospitalManagement.tt</DependentUpon>
     </Compile>
@@ -3208,6 +3211,7 @@
     <Content Include="Views\ManageDoctors\Index.cshtml" />
     <Content Include="Views\Doctor\Edit.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\Message\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

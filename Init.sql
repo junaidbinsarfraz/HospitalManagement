@@ -75,3 +75,21 @@ INSERT INTO [Patients]
 VALUES
 ('Flu', 'Engineer', 6, '20170618 10:34:09 AM', '10:34:09 AM')
 GO
+
+INSERT INTO [Users] 
+([Users].Email, [Users].Password, [Users].UserName, [Users].Age, [Users].Gender, [Users].NRIC, [Users].Comments, [Users].Address, [Users].ContactNo, [Users].FullName, [Users].Role_Id)
+VALUES
+('d1@d1.com', 'doctor', 'd', 25, 'Female', 'Doctor NRIC', '', 'Address', '48572947', 'Doctor', 4)
+GO
+
+INSERT INTO [Doctors]
+([Doctors].Specialization, [Patients].Designation, [Patients].User_Id)
+VALUES
+('Dentist', 'Doctor', 7)
+GO
+
+INSERT INTO [Messages]
+([Messages].DoctorId, [Messages].PatientId, [Messages].Text, [Messages].FromPatient)
+VALUES
+(1, 1, 'This is Patient 1', 1)
+GO

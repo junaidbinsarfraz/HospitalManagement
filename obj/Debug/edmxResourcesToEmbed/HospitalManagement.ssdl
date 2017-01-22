@@ -6,6 +6,7 @@
     <EntitySet Name="Caregivers" EntityType="HospitalManagement.Store.Caregivers" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Doctors" EntityType="HospitalManagement.Store.Doctors" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Roles" EntityType="HospitalManagement.Store.Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Messages" EntityType="HospitalManagement.Store.Messages" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="UserPatient" Association="HospitalManagement.Store.UserPatient">
       <End Role="User" EntitySet="Users" />
       <End Role="Patient" EntitySet="Patients" />
@@ -25,6 +26,14 @@
     <AssociationSet Name="UserRole" Association="HospitalManagement.Store.UserRole">
       <End Role="User" EntitySet="Users" />
       <End Role="Role" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="DoctorMessage" Association="HospitalManagement.Store.DoctorMessage">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="PatientMessage" Association="HospitalManagement.Store.PatientMessage">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="Message" EntitySet="Messages" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Users">
@@ -79,6 +88,16 @@
     </Key>
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Messages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DoctorId" Type="bigint" Nullable="false" />
+    <Property Name="PatientId" Type="bigint" Nullable="false" />
+    <Property Name="FromPatient" Type="bit" Nullable="true" />
   </EntityType>
   <Association Name="UserPatient">
     <End Role="User" Type="HospitalManagement.Store.Users" Multiplicity="1" />
@@ -137,6 +156,30 @@
       </Principal>
       <Dependent Role="User">
         <PropertyRef Name="Role_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DoctorMessage">
+    <End Role="Doctor" Type="HospitalManagement.Store.Doctors" Multiplicity="1" />
+    <End Role="Message" Type="HospitalManagement.Store.Messages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="DoctorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PatientMessage">
+    <End Role="Patient" Type="HospitalManagement.Store.Patients" Multiplicity="1" />
+    <End Role="Message" Type="HospitalManagement.Store.Messages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="PatientId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -1,0 +1,389 @@
+﻿@model HospitalManagament.User
+
+@{
+    ViewBag.Title = "Message";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <!-- .chat-row -->
+    <div class="chat-main-box">
+        <!-- .chat-left-panel -->
+        <div class="chat-left-aside">
+            <div class="open-panel"><i class="ti-angle-right"></i></div>
+            <div class="chat-left-inner">
+                <div class="form-material">
+                    <input class="form-control p-20" type="text" placeholder="Search Contact">
+                </div>
+                <div class="slimScrollDiv" style="position: relative;/* overflow: hidden; */width: auto;height: 100%;/* overflow-y: auto; */">
+                    <ul id="contacts" class="chatonline style-none slimScrollDiv" style="overflow: hidden;width: auto;height: 100%;/* overflow-y: auto; */">
+                        @*<li>
+                                <a href="javascript:void(0)"><img src="../plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="active"><img src="../plugins/images/users/genu.jpg" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><img src="../plugins/images/users/ritesh.jpg" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><img src="../plugins/images/users/arijit.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><img src="../plugins/images/users/govinda.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><img src="../plugins/images/users/hritik.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><img src="../plugins/images/users/john.jpg" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><img src="../plugins/images/users/pawandeep.jpg" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
+                            </li>*@
+                    </ul><div class="slimScrollBar" style="background: rgb(220, 220, 220); width: 0px; position: absolute; top: 0px; opacity: 0.4; border-radius: 7px; z-index: 99; right: 1px; height: 281.778px; display: none;"></div><div class="slimScrollRail" style="width: 0px; height: 100%; position: absolute; top: 0px; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px; display: none;"></div>
+                </div>
+            </div>
+        </div>
+        <!-- .chat-left-panel -->
+        <!-- .chat-right-panel -->
+        <div class="chat-right-aside">
+            <div class="chat-main-header">
+                <div class="p-20 b-b">
+                    <h3 class="box-title">Chat Message</h3>
+                </div>
+            </div>
+            <div class="chat-box">
+                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
+                    <ul id="chat" class="chat-list slimscroll p-t-30" style="overflow: hidden; width: auto; height: 100%;">
+                        @*<li>
+                                <div class="chat-image"> <img alt="male" src="../plugins/images/users/ritesh.jpg"> </div>
+                                <div class="chat-body">
+                                    <div class="chat-text">
+                                        <h4>Ritesh</h4>
+                                        <p> Hi, Genelia how are you and my son? </p> <b>10.00 am</b>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="odd">
+                                <div class="chat-image"> <img alt="Female" src="../plugins/images/users/genu.jpg"> </div>
+                                <div class="chat-body">
+                                    <div class="chat-text">
+                                        <h4>Genelia</h4>
+                                        <p> Hi, How are you Ritesh!!! We both are fine sweetu. </p> <b>10.03 am</b>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chat-image"> <img alt="male" src="../plugins/images/users/ritesh.jpg"> </div>
+                                <div class="chat-body">
+                                    <div class="chat-text">
+                                        <h4>Ritesh</h4>
+                                        <p> Oh great!!! just enjoy you all day and keep rocking</p> <b>10.05 am</b>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="odd">
+                                <div class="chat-image"> <img alt="Female" src="../plugins/images/users/genu.jpg"> </div>
+                                <div class="chat-body">
+                                    <div class="chat-text">
+                                        <h4>Genelia</h4>
+                                        <p> Your movei was superb and your acting is mindblowing </p> <b>10.07 am</b>
+                                    </div>
+                                </div>
+                            </li>*@
+                    </ul><div class="slimScrollBar" style="background: rgb(220, 220, 220); width: 0px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 126.762px;"></div><div class="slimScrollRail" style="width: 0px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+                </div>
+                <div class="row send-chat-box">
+                    <div class="col-sm-12">
+                        <textarea id="message-box" class="form-control" placeholder="Type your message"></textarea>
+                        <div class="custom-send">
+                            <button id="send-message" class="btn btn-danger btn-rounded" type="button">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- .chat-right-panel -->
+    </div>
+    <!-- /.chat-row -->
+    <!-- /.row -->
+    <!-- .right-sidebar -->
+    <div class="right-sidebar">
+        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
+            <div class="slimscrollright" style="overflow: hidden; width: auto; height: 100%;">
+                <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+                <div class="r-panel-body">
+                    <ul>
+                        <li><b>Layout Options</b></li>
+                        <li>
+                            <div class="checkbox checkbox-info">
+                                <input id="checkbox1" type="checkbox" class="fxhdr">
+                                <label for="checkbox1"> Fix Header </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="checkbox checkbox-warning">
+                                <input id="checkbox2" type="checkbox" checked="" class="fxsdr">
+                                <label for="checkbox2"> Fix Sidebar </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="checkbox checkbox-success">
+                                <input id="checkbox4" type="checkbox" class="open-close">
+                                <label for="checkbox4"> Toggle Sidebar </label>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul id="themecolors" class="m-t-20">
+                        <li><b>With Light sidebar</b></li>
+                        <li><a href="javascript:void(0)" theme="default" class="default-theme">1</a></li>
+                        <li><a href="javascript:void(0)" theme="green" class="green-theme">2</a></li>
+                        <li><a href="javascript:void(0)" theme="gray" class="yellow-theme">3</a></li>
+                        <li><a href="javascript:void(0)" theme="blue" class="blue-theme working">4</a></li>
+                        <li><a href="javascript:void(0)" theme="purple" class="purple-theme">5</a></li>
+                        <li><a href="javascript:void(0)" theme="megna" class="megna-theme">6</a></li>
+                        <li><b>With Dark sidebar</b></li>
+                        <br>
+                        <li><a href="javascript:void(0)" theme="default-dark" class="default-dark-theme">7</a></li>
+                        <li><a href="javascript:void(0)" theme="green-dark" class="green-dark-theme">8</a></li>
+                        <li><a href="javascript:void(0)" theme="gray-dark" class="yellow-dark-theme">9</a></li>
+                        <li><a href="javascript:void(0)" theme="blue-dark" class="blue-dark-theme">10</a></li>
+                        <li><a href="javascript:void(0)" theme="purple-dark" class="purple-dark-theme">11</a></li>
+                        <li><a href="javascript:void(0)" theme="megna-dark" class="megna-dark-theme">12</a></li>
+                    </ul>
+                    <ul class="m-t-20 chatonline">
+                        <li><b>Chat option</b></li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="../plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="../plugins/images/users/genu.jpg" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="../plugins/images/users/ritesh.jpg" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="../plugins/images/users/arijit.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="../plugins/images/users/govinda.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="../plugins/images/users/hritik.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="../plugins/images/users/john.jpg" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="../plugins/images/users/pawandeep.jpg" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div><div class="slimScrollBar" style="background: rgb(220, 220, 220); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+        </div>
+    </div>
+    <!-- /.right-sidebar -->
+</div>
+
+<input id="chat-user-id" type="hidden" />
+<input id="chat-connection-id" type="hidden" />
+
+@section Scripts
+{
+
+    <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+
+    <script>
+        var chat = $.connection.chatHub;
+        var isPatient = ('@Session["Role"]' == "Patient");
+
+        debugger;
+
+        // Create a function that the hub can call back to display messages.
+        chat.client.newMessageRecieved = function (connectionId, text, user) {
+            // Add the message to the page.
+            //$('#discussion').append('<li><strong>' + htmlEncode(name)
+            //    + '</strong>: ' + htmlEncode(message) + '</li>');
+
+            // Check if userId is selected
+            var isSlected = $("#contacts li#" + connectionId +" a.active");
+
+            if(isSlected && isSlected.length > 0) {
+                // Get fullname of user
+                user = JSON.parse(user);
+
+                $('#chat').append("<li class=\"\"><div class=\"chat-body\"><div class=\"chat-text\"><h4>"+user.FullName+"</h4><p> "+text+"</p></div></div></li>");
+            } else {
+                // If not then send back call to get history of userId and select that user
+                $("#contacts li#" + connectionId).click();
+            }
+
+        };
+
+        chat.client.userDisconnected = function (userConnection) {
+            userConnection = JSON.parse(userConnection);
+            $("#" + userConnection.ConnectionId + "").remove();
+        };
+
+        chat.client.newClientRegistered = function (userConnection) {
+
+            userConnection = JSON.parse(userConnection);
+
+            // Make sure that user is not added himself into the connection list
+            if ($.connection.hub.id && $.connection.hub.id != userConnection.ConnectionId) {
+                var name = userConnection.User.FullName;
+                var id = userConnection.ConnectionId;
+
+                if (isPatient && !userConnection.IsPatient && userConnection.User.Doctor) {
+                    // Add Doctor into patient's contact list
+                    var smallLabel = userConnection.User.Doctor.Specialization;
+                    $('#contacts').append("<li id=\"" + id + "\" onclick=\"selectUser(this)\"><a href=\"javascript:void(0)\"><span>" + name + "<small class=\"text-label\">" + smallLabel + "</small></span></a></li>");
+                    // Check if any user is selected or not, if not then select this user
+
+                } else if (!isPatient && userConnection.IsPatient && userConnection.User.Patient) {
+                    // Add Patient into doctor's contact list
+                    var smallLabel = userConnection.User.Patient.Disease;
+                    $('#contacts').append("<li id=\"" + id + "\" onclick=\"selectUser(this)\"><a href=\"javascript:void(0)\"><span>" + name + "<small class=\"text-label\">" + smallLabel + "</small></span></a></li>");
+                    // Check if any user is selected or not, if not then select this user
+
+                }
+            }
+
+            console.log(userConnection);
+        };
+
+        chat.client.init = function (userConnections) {
+
+            userConnections = JSON.parse(userConnections);
+
+            for (var i = 0; i < userConnections.length; i++) {
+                var userConnection = userConnections[i].Value;
+
+                if (userConnection.User) {
+                    var name = userConnection.User.FullName;
+                    var id = userConnection.ConnectionId;
+
+                    if (isPatient && userConnection.User.Doctor) {
+                        // LoggedIn User is patient
+                        // Append in the list of doctors
+
+                        var smallLabel = userConnection.User.Doctor.Specialization;
+                        $('#contacts').append("<li id=\"" + id + "\" onclick=\"selectUser(this)\"><a href=\"javascript:void(0)\"><span>" + name + "<small class=\"text-label\">" + smallLabel + "</small></span></a></li>");
+
+                    } else if (!isPatient && userConnection.User.Patient) {
+                        // LoggedIn user is doctor
+                        // Append in the list of patients
+
+                        var smallLabel = userConnection.User.Patient.Disease;
+                        $('#contacts').append("<li id=\"" + id + "\" onclick=\"selectUser(this)\"><a href=\"javascript:void(0)\"><span>" + name + "<small class=\"text-label\">" + smallLabel + "</small></span></a></li>");
+                    }
+                }
+                else {
+                    // User is himself
+                }
+
+                console.log(userConnection);
+            }
+
+        };
+
+        // Start the connection.
+        $.connection.hub.start().done(function () {
+
+            // Bind message
+            $('#send-message').click(function () {
+
+                var text = $('#message-box').val();
+
+                if(text && text != '') {
+
+                    var PatientId;
+                    var DoctorId;
+                    var targetedUserConnectionId = $('#chat-connection-id').val();
+
+                    if(isPatient) {
+                        PatientId = @Session["PatientId"];
+                        DoctorId = parseInt($('#chat-user-id').val());
+                    } else {
+                        DoctorId = @Session["DoctorId"];
+                        PatientId = parseInt($('#chat-user-id').val());
+                    }
+
+                    chat.server.sendMessage(text, PatientId, DoctorId, isPatient, targetedUserConnectionId);
+
+                    // Append Message
+                    $('#chat').append("<li class=\"odd\"><div class=\"chat-body\"><div class=\"chat-text\"><h4>@Model.FullName</h4><p> "+text+"</p></div></div></li>");
+                }
+            });
+
+            // Register User
+            chat.server.registerUser(@Model.Id, isPatient);
+
+        });
+
+        function selectUser(_this) {
+
+            var connectionId = $(_this).attr('id');
+
+            chat.server.getConnection(connectionId);
+
+            //if(userConnection && userConnection != '') {
+
+            //    userConnection = Json.parse(userConnection);
+
+            //    $(_this).children().addClass('active');
+            //}
+
+        }
+
+        chat.client.GetConnectionResult = function(userConnection){
+            userConnection = JSON.parse(userConnection);
+
+            $('#chat-user-id').val(userConnection.User.Id);
+            $('#chat-connection-id').val(userConnection.ConnectionId);
+
+            var PatientId;
+            var DoctorId;
+
+            if(isPatient) {
+                PatientId = @Session["PatientId"];
+                DoctorId = userConnection.User.Doctor.Id;
+            } else {
+                DoctorId = @Session["DoctorId"];
+                PatientId = userConnection.User.Patient.Id;
+            }
+
+            // Send ajax call
+            $.ajax({
+                url: '@Url.Action("ChatHistory", "Message")',
+                data : { PatientId : PatientId, DoctorId : DoctorId },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+
+                    for(i = 0; i < data.length; i++) {
+
+                        var message = data[i];
+
+                        var oddClass = ((isPatient && message.FromPatient) || (!isPatient && !message.FromPatient)) ? "odd" : "";
+
+                        $('#chat').append("<li class=\""+oddClass+"\"><div class=\"chat-body\"><div class=\"chat-text\"><h4>"+((message.FromPatient) ? message.Patient.User.FullName : message.Doctor.User.FullName)+"</h4><p> "+message.Text+"</p></div></div></li>");
+                    }
+
+                },
+                error: function () {
+                }
+            });
+
+            $("#"+userConnection.ConnectionId+"").children().addClass('active');
+        };
+
+        //$('#contacts li').click(function (event) {
+        //    $("a:first", this).addClass('active');
+        //});
+
+    </script>
+
+}

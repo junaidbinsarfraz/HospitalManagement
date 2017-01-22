@@ -217,8 +217,6 @@
                             }*@
                     }
 
-
-
                     @if (HttpContext.Current.Session["Role"] == "Admin")
                     {
                         <li class="nav-small-cap m-t-10">--- Professional</li>
@@ -295,7 +293,10 @@
 
                     }
 
-
+                    @if (HttpContext.Current.Session["Role"] == "Patient" || HttpContext.Current.Session["Role"] == "Doctor")
+                    {
+                        <li> <a href="/Message/Index">Messages</a> </li>
+                    }
 
                     <li><a href="../Home/LogOut" class="waves-effect"><i class="icon-logout fa-fw"></i> <span class="hide-menu">Log out</span></a></li>
                 </ul>

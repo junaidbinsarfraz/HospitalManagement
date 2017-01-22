@@ -26,6 +26,15 @@
       <End Role="User" EntitySet="Users" />
       <End Role="Role" EntitySet="Roles" />
     </AssociationSet>
+    <EntitySet Name="Messages" EntityType="HospitalManagement.Message" />
+    <AssociationSet Name="DoctorMessage" Association="HospitalManagement.DoctorMessage">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="PatientMessage" Association="HospitalManagement.PatientMessage">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="User">
     <Key>
@@ -59,6 +68,7 @@
     <Property Name="EntryDate" Type="DateTime" Nullable="true" />
     <Property Name="EntryTime" Type="Time" Nullable="true" />
     <Property Name="EntryDateStr" Type="String" Nullable="true" />
+    <NavigationProperty Name="Messages" Relationship="HospitalManagement.PatientMessage" FromRole="Patient" ToRole="Message" />
   </EntityType>
   <EntityType Name="Caregiver">
     <Key>
@@ -76,6 +86,7 @@
     <Property Name="Designation" Type="String" Nullable="true" />
     <Property Name="Specialization" Type="String" Nullable="true" />
     <NavigationProperty Name="User" Relationship="HospitalManagement.UserDoctor" FromRole="Doctor" ToRole="User" />
+    <NavigationProperty Name="Messages" Relationship="HospitalManagement.DoctorMessage" FromRole="Doctor" ToRole="Message" />
   </EntityType>
   <Association Name="UserPatient">
     <End Type="HospitalManagement.User" Role="User" Multiplicity="1" />
@@ -104,5 +115,41 @@
   <Association Name="UserRole">
     <End Type="HospitalManagement.User" Role="User" Multiplicity="*" />
     <End Type="HospitalManagement.Role" Role="Role" Multiplicity="1" />
+  </Association>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Text" Type="String" Nullable="true" />
+    <NavigationProperty Name="Doctor" Relationship="HospitalManagement.DoctorMessage" FromRole="Message" ToRole="Doctor" />
+    <Property Name="DoctorId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Patient" Relationship="HospitalManagement.PatientMessage" FromRole="Message" ToRole="Patient" />
+    <Property Name="PatientId" Type="Int64" Nullable="false" />
+    <Property Name="FromPatient" Type="Boolean" Nullable="true" />
+  </EntityType>
+  <Association Name="DoctorMessage">
+    <End Type="HospitalManagement.Doctor" Role="Doctor" Multiplicity="1" />
+    <End Type="HospitalManagement.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="DoctorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PatientMessage">
+    <End Type="HospitalManagement.Patient" Role="Patient" Multiplicity="1" />
+    <End Type="HospitalManagement.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="PatientId" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>
