@@ -15736,10 +15736,10 @@ input[type = "radio"] {
 }
 
 .blink-me {
-  animation: blinker 1s linear infinite;
-  background: #d0d0d0;
+  /*animation: blinker 1s linear infinite;
+  background: #d0d0d0;*/
 }
 
-@keyframes blinker {  
+/*@keyframes blinker {  
   50% { opacity: 0; }
-}
+}*/

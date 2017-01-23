@@ -223,6 +223,9 @@
                 if(otherLiSelected && otherLiSelected.length > 0) {
                     // Do blinking effect
                     $("#contacts li#" + connectionId).addClass('blink-me');
+
+                    $("#contacts li#" + connectionId + " a").append("<div class=\"notify\" style=\"padding-bottom: 20px; margin-top: -20px;\"><span class=\"heartbit\"></span><span class=\"point\"></span></div>");
+
                 } else {
                     $("#contacts li#" + connectionId).click();
                 }
@@ -359,6 +362,10 @@
             chat.server.getConnection(connectionId);
 
             $(_this).removeClass('blink-me');
+
+            if($($(_this).children('a')[0]).find('div.notify')) {
+                $($(_this).children('a')[0]).find('div.notify').remove();
+            }
 
             $('#contacts li a.active').removeClass('active');
 
