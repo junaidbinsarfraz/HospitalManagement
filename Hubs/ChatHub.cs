@@ -181,6 +181,8 @@ namespace HospitalManagament.Hubs
 
             db.Messages.Add(new Message() { DoctorId = DoctorId, FromPatient = FromPatient, PatientId = PatientId, Text = Text });
 
+            db.SaveChanges();
+
             User user;
 
             if (FromPatient)
