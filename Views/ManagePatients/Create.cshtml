@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-sm-12 col-xs-12">
             @using (Html.BeginForm("Create", "ManagePatients", FormMethod.Post,
-                             new { enctype = "multipart/form-data" }))
+                             new { enctype = "multipart/form-data", data_toggle="validator" }))
             {
                 <div class="form-group">
                     <label for="exampleInputEmail1">FullName</label>
@@ -77,7 +77,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Entry Time</label>
-                    <div class="input-group clockpicker">
+                    <div class="input-group clockpicker" data-placement="bottom" data-align="top" data-autoclose="true">
                         @Html.EditorFor(model => model.Patient.EntryTime, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "text" } })
                         <span class="input-group-addon"> <span class="glyphicon glyphicon-time"></span> </span>
                     </div>
@@ -99,3 +99,25 @@
         </div>
     </div>
 </div>
+
+@section Scripts
+{
+    <script>
+
+        // Set current time
+        var fullDate = new Date();
+        var time = ((fullDate.getHours() > 9) ? fullDate.getHours() : "0" + fullDate.getHours()) + ":" + ((fullDate.getMinutes() > 9) ? fullDate.getMinutes() : "0" + fullDate.getMinutes());
+
+        $('.clockpicker input').val(time);
+
+        // Set current date
+
+        var twoDigitMonth = ((fullDate.getMonth().length + 1) === 1) ? (fullDate.getMonth() + 1) : '0' + (fullDate.getMonth() + 1);
+
+        var twoDigitDate = fullDate.getDate() + ""; if (twoDigitDate.length == 1) twoDigitDate = "0" + twoDigitDate;
+        var currentDate = twoDigitMonth + "/" + twoDigitDate + "/" + fullDate.getFullYear(); console.log(currentDate);
+
+        $('.mydatepicker').val(currentDate);
+
+    </script>
+}

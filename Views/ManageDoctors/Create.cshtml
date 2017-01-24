@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-sm-12 col-xs-12">
             @using (Html.BeginForm("Create", "ManageDoctors", FormMethod.Post,
-                             new { enctype = "multipart/form-data" }))
+                             new { enctype = "multipart/form-data", data_toggle = "validator" }))
             {
                 <div class="form-group">
                     <label for="exampleInputEmail1">FullName</label>

@@ -348,6 +348,8 @@
     <script src="~/plugins/bower_components/peity/jquery.peity.init.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="~/js/custom.min.js"></script>
+    <!-- Validator JavaScript -->
+    <script src="~/js/validator.js"></script>
     @*<script src="~/js/dashboard1.js"></script>*@
     <!--Morris JavaScript -->
     <script src="~/plugins/bower_components/raphael/raphael-min.js"></script>
@@ -401,8 +403,9 @@
 
             $('.clockpicker').clockpicker({
                 donetext: 'Done',
+                'default': 'now'
 
-            });
+            }).clockpicker;
         });
 
     </script>
