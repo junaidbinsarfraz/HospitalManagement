@@ -8,13 +8,13 @@
 <div class="login-box login-sidebar">
     <div class="white-box">
 
-        @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-horizontal form-material", @id = "loginform" }))
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-horizontal form-material", @id = "loginform", data_toggle = "validator" }))
         {
             <a href="javascript:void(0)" class="text-center db"><img src="../plugins/images/eliteadmin-logo-dark.png" alt="Home" /><br /><img src="../plugins/images/eliteadmin-text-dark.png" alt="Home" /></a>
 
             <div class="form-group m-t-40">
                 <div class="col-xs-12">
-                    @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Email", @required = "required" })
+                    @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Email", @required = "required", @type = "email" })
                 </div>
             </div>
             <div class="form-group">
