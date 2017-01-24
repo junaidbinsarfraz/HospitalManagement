@@ -13,14 +13,9 @@
                 <div class="form-group">
                     @Html.HiddenFor(a => a.Id)
                     @Html.HiddenFor(a => a.Doctor.Id)
-                    <label for="exampleInputEmail1" class="control-label">FullName</label>
+                    <label for="exampleInputEmail1" class="control-label">Full Name</label>
                     @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1" class="control-label">UserName</label>
-                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
-                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1" class="control-label">NRIC</label>
@@ -36,11 +31,6 @@
                     <label for="exampleInputPassword1" class="control-label">ContactNo</label>
                     @Html.EditorFor(model => model.ContactNo, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.ContactNo, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1" class="control-label">Email</label>
-                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "email" } })
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1" class="control-label">Gender</label>

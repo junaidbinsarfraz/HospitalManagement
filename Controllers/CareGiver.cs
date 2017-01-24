@@ -13,7 +13,7 @@ namespace HospitalManagament.Controllers
     {
         private HospitalManagementContext db = new HospitalManagementContext();
 
-        // GET: Patient
+        // GET: Caregiver at the start
         public ActionResult Index()
         {
             if (HttpContext.Session["LoggedInUser"] == null)
@@ -27,7 +27,7 @@ namespace HospitalManagament.Controllers
             }
         }
 
-        // POST: ManagePatients/Edit/5
+        // POST: ManageCaregivers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -36,18 +36,6 @@ namespace HospitalManagament.Controllers
             if (ModelState.IsValid)
             {
                 User oldUser = db.Users.FirstOrDefault(u => u.Id == user.Id);
-
-                // temp sol
-                //oldUser.FullName = user.FullName;
-                //oldUser.UserName = user.UserName;
-                //oldUser.Caregiver.NRIC = user.Caregiver.NRIC;
-                //oldUser.Caregiver.Age = user.Caregiver.Age;
-                //oldUser.Caregiver.ContactNo = user.Caregiver.ContactNo;
-                //oldUser.Email = user.Email;
-                //oldUser.Caregiver.Occupation = user.Caregiver.Occupation;
-                //oldUser.Caregiver.Gender = user.Caregiver.Gender;
-                //oldUser.Caregiver.Address = user.Caregiver.Address;
-                //oldUser.Caregiver.PatientId = user.PatientId.Value;
 
                 oldUser.FullName = user.FullName;
                 oldUser.UserName = user.UserName;
@@ -58,8 +46,7 @@ namespace HospitalManagament.Controllers
                 oldUser.Gender = user.Gender;
                 oldUser.Address = user.Address;
                 oldUser.Comments = user.Comments;
-                // oldUser.Caregiver.Patient = db.Patients.ToList().Where(u => u.Id == user.Patient.Id).FirstOrDefault();
-
+                
                 db.SaveChanges();
 
                 HttpContext.Session["LoggedInUser"] = oldUser;
@@ -69,7 +56,7 @@ namespace HospitalManagament.Controllers
             return View(user);
         }
 
-        // GET: ManageCareGivers/Edit/5
+        // GET: CareGiver/Edit/5
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -86,6 +73,7 @@ namespace HospitalManagament.Controllers
             {
                 return HttpNotFound();
             }
+            // Fetch all the patients
             ViewBag.PatientId = new SelectList(db.Patients.Include(a => a.User).Select(a => new { a.User.FullName, a.Id }), "Id", "FullName");
             return View(db.Users.FirstOrDefault(a => a.Id == id));
         }

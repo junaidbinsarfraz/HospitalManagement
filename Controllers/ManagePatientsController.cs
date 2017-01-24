@@ -62,6 +62,7 @@ namespace HospitalManagament.Controllers
 
                 User Admin = (User)HttpContext.Session["LoggedInUser"];
 
+                // Update totals count
                 if (Admin != null && Admin.Role.Name == "Admin")
                 {
                     HttpContext.Session["TotalPatientList"] = db.Users.Include(u => u.Patient).Where(u => u.Patient != null).ToList();
@@ -103,19 +104,6 @@ namespace HospitalManagament.Controllers
             if (ModelState.IsValid)
             {
                 User oldUser = db.Users.FirstOrDefault(u => u.Id == user.Id);
-
-                // temp sol
-                //oldUser.FullName = user.FullName;
-                //oldUser.UserName = user.UserName;
-                //oldUser.Password = user.Password;
-                //oldUser.Patient.NRIC = user.Patient.NRIC;
-                //oldUser.Patient.Age = user.Patient.Age;
-                //oldUser.Patient.ContactNo = user.Patient.ContactNo;
-                //oldUser.Patient.Disease = user.Patient.Disease;
-                //oldUser.Email = user.Email;
-                //oldUser.Patient.Occupation = user.Patient.Occupation;
-                //oldUser.Patient.Gender = user.Patient.Gender;
-                //oldUser.Patient.Address = user.Patient.Address;
 
                 oldUser.FullName = user.FullName;
                 oldUser.UserName = user.UserName;
@@ -159,13 +147,6 @@ namespace HospitalManagament.Controllers
             }
             catch (Exception ex)
             { }
-
-            //UsersRole userRole = db.UsersRoles.ToList().Where(u => u.UsreId == id).First();
-            //if (userRole == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //db.UsersRoles.Remove(userRole);
 
             db.Patients.Remove(user.Patient);
 

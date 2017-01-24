@@ -204,9 +204,7 @@
         // Create a function that the hub can call back to display messages.
         chat.client.newMessageRecieved = function (connectionId, text, user) {
             // Add the message to the page.
-            //$('#discussion').append('<li><strong>' + htmlEncode(name)
-            //    + '</strong>: ' + htmlEncode(message) + '</li>');
-
+            
             // Check if userId is selected
             var isSlected = $("#contacts li#" + connectionId +" a.active");
 
@@ -214,7 +212,15 @@
                 // Get fullname of user
                 user = JSON.parse(user);
 
-                $('#chat').append("<li class=\"\"><div class=\"chat-body\"><div class=\"chat-text\"><h4>"+user.FullName+"</h4><p> "+text+"</p></div></div></li>");
+                var addLink = user.Patient;
+                var link = "../ManagePatients/Details/"+user.Id+"?param=detail";
+
+                if(user.Patient) {
+                    $('#chat').append("<li class=\"\"><div class=\"chat-body\"><div class=\"chat-text\"><h4><a href=\"../ManagePatients/Details/"+user.Id+"?param=details\" target=\"_blank\">"+user.FullName+"</a></h4><p> "+text+"</p></div></div></li>");
+                } else {
+                    $('#chat').append("<li class=\"\"><div class=\"chat-body\"><div class=\"chat-text\"><h4>"+user.FullName+"</h4><p> "+text+"</p></div></div></li>");
+                }
+
             } else {
                 // If not then send back call to get history of userId and select that user
 
@@ -236,14 +242,14 @@
 
         };
 
+        // Called when user is dosconnected
         chat.client.userDisconnected = function (userConnection) {
             userConnection = JSON.parse(userConnection);
             $("#" + userConnection.ConnectionId + "").remove();
 
-            //var contacts = $('#contacts').children();
-
             var isSlected = $("#contacts li a.active");
 
+            // Check if user is selected
             if(isSlected && isSlected.length == 0) {
                 clearChat();
 
@@ -253,6 +259,7 @@
             }
         };
 
+        // Called when new user is connected
         chat.client.newClientRegistered = function (userConnection) {
 
             userConnection = JSON.parse(userConnection);
@@ -280,6 +287,7 @@
             console.log(userConnection);
         };
 
+        // Initilize the user's chat
         chat.client.init = function (userConnections) {
 
             userConnections = JSON.parse(userConnections);
@@ -309,10 +317,7 @@
                 else {
                     // User is himself
                 }
-
-                console.log(userConnection);
             }
-
         };
 
         // Start the connection.
@@ -346,6 +351,7 @@
 
                     $('#message-box').focus();
 
+                    // Do stream line scrolling effect
                     $(".chat-box .slimScrollDiv").animate({ scrollTop: $("#chat")[0].scrollHeight}, 1000);
                 }
             });
@@ -355,6 +361,7 @@
 
         });
 
+        // Called when current user select other user to start chat
         function selectUser(_this) {
 
             var connectionId = $(_this).attr('id');
@@ -375,15 +382,9 @@
 
             clearChat();
 
-            //if(userConnection && userConnection != '') {
-
-            //    userConnection = Json.parse(userConnection);
-
-            //    $(_this).children().addClass('active');
-            //}
-
         }
 
+        // Called when get selected user's chat history
         chat.client.GetConnectionResult = function(userConnection){
             userConnection = JSON.parse(userConnection);
 
@@ -410,13 +411,21 @@
                 dataType: "json",
                 success: function (data) {
 
+                    // Check if user is selected
+                    var selectedConnectionId = $('#chat-connection-id');
+
                     for(i = 0; i < data.length; i++) {
 
                         var message = data[i];
 
                         var oddClass = ((isPatient && message.FromPatient) || (!isPatient && !message.FromPatient)) ? "odd" : "";
 
-                        $('#chat').append("<li class=\""+oddClass+"\"><div class=\"chat-body\"><div class=\"chat-text\"><h4>"+((message.FromPatient) ? message.Patient.User.FullName : message.Doctor.User.FullName)+"</h4><p> "+message.Text+"</p></div></div></li>");
+                        // Doctor can view patient's profile
+                        if(!isPatient && message.FromPatient) {
+                            $('#chat').append("<li class=\""+oddClass+"\"><div class=\"chat-body\"><div class=\"chat-text\"><h4><a href=\"../ManagePatients/Details/"+message.Patient.User.Id+"?param=details\" target=\"_blank\">"+((message.FromPatient) ? message.Patient.User.FullName : message.Doctor.User.FullName)+"</a></h4><p> "+message.Text+"</p></div></div></li>");
+                        } else {
+                            $('#chat').append("<li class=\""+oddClass+"\"><div class=\"chat-body\"><div class=\"chat-text\"><h4>"+((message.FromPatient) ? message.Patient.User.FullName : message.Doctor.User.FullName)+"</h4><p> "+message.Text+"</p></div></div></li>");
+                        }
                     }
 
                     $(".chat-box .slimScrollDiv").animate({ scrollTop: $("#chat")[0].scrollHeight}, 1000);

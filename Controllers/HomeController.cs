@@ -12,6 +12,7 @@ namespace HospitalManagament.Controllers
 {
     public class HomeController : Controller
     {
+        // Show dashboard of admin
         public ActionResult Index()
         {
             if (HttpContext.Session["LoggedInUser"] == null)
@@ -26,22 +27,27 @@ namespace HospitalManagament.Controllers
 
         }
 
+        // Show login page if user is not loggedin
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
 
+        // Do login for a user and redirect to specific page w.r.t. user role
         [HttpPost]
         public ActionResult Login(LoginModel loginModel)
         {
             if (ModelState.IsValid)
             {
                 HospitalManagementContext dataContext = new HospitalManagementContext();
+                // Check credentials
                 User user = dataContext.Users.FirstOrDefault(u => u.Email == loginModel.Email && u.Password == loginModel.Password);
+                
                 if (user != null)
                 {
                     HttpContext.Session["LoggedInUser"] = user;
+                    // Check if admin
                     if (user.Role.Name == "Admin")
                     {
                         HttpContext.Session["Role"] = "Admin";
@@ -81,7 +87,7 @@ namespace HospitalManagament.Controllers
                         return RedirectToAction("Index", "Doctor");
                     }
                 }
-
+                // Invalid credentials
                 else
                 {
                     ModelState.AddModelError("", "Invalid username or password");
@@ -91,6 +97,7 @@ namespace HospitalManagament.Controllers
             return View();
         }
 
+        // Do logout
         [HttpGet]
         public ActionResult LogOut()
         {
@@ -105,7 +112,8 @@ namespace HospitalManagament.Controllers
 
             return RedirectToAction("Login", "Home");
         }
-
+        
+        // Fetch data for Filled line chart
         [HttpGet]
         public ActionResult CountGenderPerMonthFilledLine()
         {
@@ -138,10 +146,9 @@ namespace HospitalManagament.Controllers
                 MaleCount = MaleCount,
                 FemaleCount = FemaleCount
             }, JsonRequestBehavior.AllowGet);
-
-            //return Json(GenderMonth, JsonRequestBehavior.AllowGet);
         }
 
+        // Fetch data for hollow line chart
         [HttpGet]
         public ActionResult CountGenderPerMonthHollow()
         {
@@ -180,6 +187,7 @@ namespace HospitalManagament.Controllers
             return Content(JsonConvert.SerializeObject(GenderMonthFinal), "application/json");
         }
 
+        // Fetch data for pie chart to show atmost top 5 patients w.r.t disease percentage
         public ActionResult PatientDiseasePercentage()
         {
             HospitalManagementContext DataContext = new HospitalManagementContext();
@@ -226,6 +234,7 @@ namespace HospitalManagament.Controllers
 
         }
 
+        // Get updated count list of patients, caregiver and doctor
         [HttpGet]
         public ActionResult GetUpdatedCountsAndList()
         {

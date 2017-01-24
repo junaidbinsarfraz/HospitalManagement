@@ -13,18 +13,11 @@ namespace HospitalManagament.Controllers
     {
         private HospitalManagementContext db = new HospitalManagementContext();
 
-        //// GET: ManageCareGivers
-        //public ActionResult Index()
-        //{
-        //    return View(db.Caregivers.ToList());
-        //}
-
         // GET: ManageCareGivers
         public ActionResult Index()
         {
             var users = db.Users.Include(u => u.Caregiver);
             return View(users.ToList().Where(x => x.UserName != "Admin").Where(x => x.Caregiver != null));
-            //return View(db.Caregivers.Include(u => u.Users).ToList());
         }
 
         // GET: ManageCareGivers/Details/5
@@ -62,8 +55,7 @@ namespace HospitalManagament.Controllers
             {
                 // add careGiver
                 Caregiver caregiver = new Caregiver();
-                // caregiver.Patient = db.Patients.ToList().Where(u => u.Id == user.Id).FirstOrDefault();
-
+                
                 // add role as caregiver 
                 user.Role = db.Roles.ToList().Where(u => u.Name == "Caregiver").FirstOrDefault();
                 user.Caregiver = caregiver;
@@ -76,6 +68,7 @@ namespace HospitalManagament.Controllers
 
                 User Admin = (User)HttpContext.Session["LoggedInUser"];
 
+                // Update totals count 
                 if (Admin != null && Admin.Role.Name == "Admin")
                 {
                     HttpContext.Session["TotalPatientList"] = db.Users.Include(u => u.Patient).Where(u => u.Patient != null).ToList();
@@ -110,6 +103,7 @@ namespace HospitalManagament.Controllers
             {
                 return HttpNotFound();
             }
+            // Fetch all patients
             ViewBag.PatientId = new SelectList(db.Patients.Include(a => a.User).Select(a => new { a.User.FullName, a.Id }), "Id", "FullName", 2);
             return View(db.Users.FirstOrDefault(a => a.Id == id));
         }
@@ -122,20 +116,6 @@ namespace HospitalManagament.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Caregiver oldCareGiver = db.Caregivers.FirstOrDefault(c => c.Id == user.CareGiverId);
-                //oldCareGiver.NRIC = user.Caregiver.NRIC;
-                //oldCareGiver.Age = user.Caregiver.Age;
-                //oldCareGiver.ContactNo = user.Caregiver.ContactNo;
-                //oldCareGiver.Gender = user.Caregiver.Gender;
-                //oldCareGiver.Address = user.Caregiver.Address;
-                //oldCareGiver.PatientId = user.Caregiver.PatientId;
-
-                //User oldUser = oldCareGiver.Users.FirstOrDefault();
-                //oldUser.Email = user.Email;
-                //oldUser.UserName = user.UserName;
-                //oldUser.FullName = user.FullName;
-                //oldUser.Password = user.Password;
-
                 User oldUser = db.Users.FirstOrDefault(u => u.Id == user.Id);
 
                 oldUser.FullName = user.FullName;
@@ -147,8 +127,7 @@ namespace HospitalManagament.Controllers
                 oldUser.Gender = user.Gender;
                 oldUser.Address = user.Address;
                 oldUser.Comments = user.Comments;
-                //oldUser.Caregiver.Patient = db.Patients.ToList().Where(u => u.Id == user.Patient.Id).FirstOrDefault();
-
+                
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
@@ -173,8 +152,7 @@ namespace HospitalManagament.Controllers
                             oldUser.Gender = user.Gender;
                             oldUser.Address = user.Address;
                             oldUser.Comments = user.Comments;
-                            //oldUser.Caregiver.Patient = db.Patients.ToList().Where(u => u.Id == user.Patient.Id).FirstOrDefault();
-
+                            
                             db.SaveChanges();
 
                             return RedirectToAction("Index");
@@ -216,14 +194,8 @@ namespace HospitalManagament.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            //UsersRole userRole = db.UsersRoles.ToList().Where(u => u.UsreId == id).First();
-            //if (userRole == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //db.UsersRoles.Remove(userRole);
-
             User user = db.Users.Find(id);
+
             if (user == null)
             {
                 return HttpNotFound();

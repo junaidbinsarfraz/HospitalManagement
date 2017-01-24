@@ -27,7 +27,7 @@ namespace HospitalManagament.Controllers
             }
         }
 
-        // POST: ManagePatients/Edit/5
+        // POST: Patient/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -36,18 +36,6 @@ namespace HospitalManagament.Controllers
             if (ModelState.IsValid)
             {
                 User oldUser = db.Users.FirstOrDefault(u => u.Id == user.Id);
-
-                // temp sol
-                //oldUser.FullName = user.FullName;
-                //oldUser.UserName = user.UserName;
-                //oldUser.Patient.NRIC = user.Patient.NRIC;
-                //oldUser.Patient.Age = user.Patient.Age;
-                //oldUser.Patient.ContactNo = user.Patient.ContactNo;
-                //oldUser.Patient.Disease = user.Patient.Disease;
-                //oldUser.Email = user.Email;
-                //oldUser.Patient.Occupation = user.Patient.Occupation;
-                //oldUser.Patient.Gender = user.Patient.Gender;
-                //oldUser.Patient.Address = user.Patient.Address;
 
                 oldUser.FullName = user.FullName;
                 oldUser.UserName = user.UserName;
@@ -70,7 +58,7 @@ namespace HospitalManagament.Controllers
             return View(user);
         }
 
-        // GET: ManagePatients/Edit/5
+        // GET: Patient/Edit/5
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -82,8 +70,6 @@ namespace HospitalManagament.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.CareGiverId = new SelectList(db.Caregivers, "Id", "ContactNo", user.CareGiverId);
-            //ViewBag.PatientId = new SelectList(db.Patients, "Id", "ContactNo", user.PatientId);
             return View(user);
         }
     }

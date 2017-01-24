@@ -13,7 +13,7 @@ namespace HospitalManagament.Controllers
     {
         private HospitalManagementContext db = new HospitalManagementContext();
 
-        // GET: Patient
+        // GET: Doctor
         public ActionResult Index()
         {
             if (HttpContext.Session["LoggedInUser"] == null)
@@ -27,7 +27,7 @@ namespace HospitalManagament.Controllers
             }
         }
 
-        // POST: ManagePatients/Edit/5
+        // POST: ManageDoctors/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -36,18 +36,6 @@ namespace HospitalManagament.Controllers
             if (ModelState.IsValid)
             {
                 User oldUser = db.Users.FirstOrDefault(u => u.Id == user.Id);
-
-                // temp sol
-                //oldUser.FullName = user.FullName;
-                //oldUser.UserName = user.UserName;
-                //oldUser.Caregiver.NRIC = user.Caregiver.NRIC;
-                //oldUser.Caregiver.Age = user.Caregiver.Age;
-                //oldUser.Caregiver.ContactNo = user.Caregiver.ContactNo;
-                //oldUser.Email = user.Email;
-                //oldUser.Caregiver.Occupation = user.Caregiver.Occupation;
-                //oldUser.Caregiver.Gender = user.Caregiver.Gender;
-                //oldUser.Caregiver.Address = user.Caregiver.Address;
-                //oldUser.Caregiver.PatientId = user.PatientId.Value;
 
                 oldUser.FullName = user.FullName;
                 oldUser.UserName = user.UserName;
@@ -70,7 +58,7 @@ namespace HospitalManagament.Controllers
             return View(user);
         }
 
-        // GET: ManageCareGivers/Edit/5
+        // GET: Doctor/Edit/5
         public ActionResult Edit(long? id)
         {
             if (id == null)

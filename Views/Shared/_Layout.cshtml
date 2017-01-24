@@ -55,119 +55,32 @@
                 <ul class="nav navbar-top-links navbar-left hidden-xs">
                     <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
                     <li>
-                        <form role="search" class="app-search hidden-xs">
-                            <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a>
-                        </form>
+                        @*<form role="search" class="app-search hidden-xs">
+                                <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a>
+                            </form>*@
                     </li>
                 </ul>
                 <ul class="nav navbar-top-links navbar-right pull-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#">
-                            <i class="icon-envelope"></i>
-                            <div class="notify"><span class="heartbit"></span><span class="point"></span></div>
-                        </a>
-                        <ul class="dropdown-menu mailbox animated bounceInDown">
-                            <li>
-                                <div class="drop-title">You have 4 new messages</div>
-                            </li>
-                            <li>
-                                <div class="message-center">
-                                    <a href="#">
-                                        <div class="user-img"> <img src="~/plugins/images/users/pawandeep.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-                                        <div class="mail-contnet">
-                                            <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span>
-                                        </div>
-                                    </a>
-                                    <a href="#">
-                                        <div class="user-img"> <img src="~/plugins/images/users/sonu.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
-                                        <div class="mail-contnet">
-                                            <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span>
-                                        </div>
-                                    </a>
-                                    <a href="#">
-                                        <div class="user-img"> <img src="~/plugins/images/users/arijit.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
-                                        <div class="mail-contnet">
-                                            <h5>Arijit Sinh</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span>
-                                        </div>
-                                    </a>
-                                    <a href="#">
-                                        <div class="user-img"> <img src="~/plugins/images/users/pawandeep.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
-                                        <div class="mail-contnet">
-                                            <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <a class="text-center" href="javascript:void(0);"> <strong>See all notifications</strong> <i class="fa fa-angle-right"></i> </a>
-                            </li>
-                        </ul>
-                        <!-- /.dropdown-messages -->
-                    </li>
-                    <!-- /.dropdown -->
-                    <li class="dropdown">
-                        <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#">
-                            <i class="icon-note"></i>
-                            <div class="notify"><span class="heartbit"></span><span class="point"></span></div>
-                        </a>
-                        <ul class="dropdown-menu dropdown-tasks animated slideInUp">
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <p> <strong>Task 1</strong> <span class="pull-right text-muted">40% Complete</span> </p>
-                                        <div class="progress progress-striped active">
-                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"> <span class="sr-only">40% Complete (success)</span> </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <p> <strong>Task 2</strong> <span class="pull-right text-muted">20% Complete</span> </p>
-                                        <div class="progress progress-striped active">
-                                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%"> <span class="sr-only">20% Complete</span> </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <p> <strong>Task 3</strong> <span class="pull-right text-muted">60% Complete</span> </p>
-                                        <div class="progress progress-striped active">
-                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"> <span class="sr-only">60% Complete (warning)</span> </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <p> <strong>Task 4</strong> <span class="pull-right text-muted">80% Complete</span> </p>
-                                        <div class="progress progress-striped active">
-                                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%"> <span class="sr-only">80% Complete (danger)</span> </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a class="text-center" href="#"> <strong>See All Tasks</strong> <i class="fa fa-angle-right"></i> </a>
-                            </li>
-                        </ul>
-                        <!-- /.dropdown-tasks -->
-                    </li>
                     <!-- /.dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="~/plugins/images/users/d1.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">@Html.Raw(((HospitalManagament.User)HttpContext.Current.Session["LoggedInUser"]).FullName)</b> </a>
                         <ul class="dropdown-menu dropdown-user animated flipInY">
-                            <li><a href="javascript:void(0)"><i class="ti-user"></i>  My Profile</a></li>
-                            <li><a href="javascript:void(0)"><i class="ti-email"></i>  Inbox</a></li>
-                            <li><a href="javascript:void(0)"><i class="ti-settings"></i>  Account Setting</a></li>
+                            @if (HttpContext.Current.Session["Role"] == "Patient")
+                            {
+                                <li><a href="/Patient/Index"><i class="ti-user"></i>  My Profile</a></li>
+                            }
+                            @if (HttpContext.Current.Session["Role"] == "Doctor")
+                            {
+                                <li><a href="/Doctor/Index"><i class="ti-user"></i>  My Profile</a></li>
+                            }
+                            @if (HttpContext.Current.Session["Role"] == "Caregiver")
+                            {
+                                <li><a href="/Caregiver/Index"><i class="ti-user"></i>  My Profile</a></li>
+                            }
+                            @if (HttpContext.Current.Session["Role"] == "Patient" || HttpContext.Current.Session["Role"] == "Doctor")
+                            {
+                                <li><a href="/Message/Index"><i class="ti-email"></i>  Messages</a></li>
+                            }
                             <li><a href="../Home/Login"><i class="fa fa-power-off"></i>  Logout</a></li>
                         </ul>
                         <!-- /.dropdown-user -->
@@ -197,24 +110,34 @@
                         <a href="#" class="waves-effect">
                             <img src="~/plugins/images/users/d1.jpg" alt="user-img" class="img-circle"> <span class="hide-menu">@Html.Raw(((HospitalManagament.User)HttpContext.Current.Session["LoggedInUser"]).FullName)<span class="fa arrow"></span></span>
                         </a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="javascript:void(0)"><i class="ti-user"></i> My Profile</a></li>
-                            <li><a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a></li>
+                        <ul class="nav nav-second-level collapse">
+                            @if (HttpContext.Current.Session["Role"] == "Patient")
+                            {
+                                <li><a href="/Patient/Index"><i class="ti-user"></i>  My Profile</a></li>
+                            }
+                            @if (HttpContext.Current.Session["Role"] == "Doctor")
+                            {
+                                <li><a href="/Doctor/Index"><i class="ti-user"></i>  My Profile</a></li>
+                            }
+                            @if (HttpContext.Current.Session["Role"] == "Caregiver")
+                            {
+                                <li><a href="/Caregiver/Index"><i class="ti-user"></i>  My Profile</a></li>
+                            }
+                            @if (HttpContext.Current.Session["Role"] == "Patient" || HttpContext.Current.Session["Role"] == "Doctor")
+                            {
+                                <li><a href="/Message/Index"><i class="ti-email"></i>  Messages</a></li>
+                            }
                             <li><a href="../Home/LogOut"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>
                     </li>
-                    <li class="nav-small-cap m-t-10">--- Main Menu</li>
 
                     @{
                         if (HttpContext.Current.Session["Role"] == "Admin")
                         {
+                            <li class="nav-small-cap m-t-10">--- Main Menu</li>
+
                             <li> <a href="../Home/Index?param=@HttpContext.Current.Session["TotalPatients"]" class="waves-effect"><i class="ti-dashboard p-r-10"></i> <span class="hide-menu">Dashboard</span></a> </li>
                         }
-
-                        @*else
-                            {
-                                <li> <a href="../Patient/Index" class="waves-effect"><i class="ti-dashboard p-r-10"></i> <span class="hide-menu">Dashboard</span></a> </li>
-                            }*@
                     }
 
                     @if (HttpContext.Current.Session["Role"] == "Admin")
@@ -243,62 +166,8 @@
                                 <li> <a href="/ManageDoctors/Create">Add Doctor</a> </li>
                             </ul>
                         </li>
-
-                        <li>
-                            <a href="javascript:void(0);" class="waves-effect"><i class="icon-people p-r-10"></i> <span class="hide-menu"> Bed <span class="fa arrow"></span></span></a>
-                            <ul class="nav nav-second-level">
-                                <li> <a href="http://localhost:60508/AssignBedForm.aspx">Assign Bed</a> </li>
-                                <li> <a href="http://localhost:60508/BedMain.aspx">Bed Main</a> </li>
-                                <li> <a href="http://localhost:60508/FullBedList.aspx">Full Bed List</a> </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" class="waves-effect"><i class="icon-people p-r-10"></i> <span class="hide-menu"> Appointment<span class="fa arrow"></span></span></a>
-                            <ul class="nav nav-second-level">
-                                <li> <a href="http://localhost:63235/AppointmentAddDoctor.aspx">Add Appointment Doctor</a> </li>
-                                <li> <a href="http://localhost:63235/AddAppointmentDateTime.aspx">Add Appointment  (Date/Time)</a> </li>
-                                <li> <a href="http://localhost:63235/Appointment.aspx">View Appointments</a> </li>
-
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0);" class="waves-effect"><i class="icon-people p-r-10"></i> <span class="hide-menu">Billing<span class="fa arrow"></span></span></a>
-                            <ul class="nav nav-second-level">
-                                <li> <a href="http://localhost:63235/CreatePatientBill.aspx">Create Bill</a> </li>
-                                <li> <a href="http://localhost:63235/PatientBill.aspx">View Bills</a> </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0);" class="waves-effect"><i class="icon-people p-r-10"></i> <span class="hide-menu">Equipment Inventory<span class="fa arrow"></span></span></a>
-                            <ul class="nav nav-second-level">
-                                <li> <a href="http://localhost:63235/AddEquipment.aspx">Add Equipment</a> </li>
-                                <li> <a href="http://localhost:63235/EditEquipment.aspx">Edit Equipment</a> </li>
-                                <li> <a href="http://localhost:63235/LoanEquipment.aspx">Loan Equipment</a> </li>
-                                <li> <a href="http://localhost:63235/ViewEquipment.aspx">View Equipment</a> </li>
-
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0);" class="waves-effect"><i class="icon-people p-r-10"></i> <span class="hide-menu">Medicine Inventory<span class="fa arrow"></span></span></a>
-                            <ul class="nav nav-second-level">
-                                <li> <a href="http://localhost:63235/AddMedicine.aspx">Add Medicine</a> </li>
-                                <li> <a href="http://localhost:63235/EditMedicine.aspx">Edit Medicine</a> </li>
-                                <li> <a href="http://localhost:63235/ViewMedicine.aspx">View Medicine</a> </li>
-
-                            </ul>
-                        </li>
-
                     }
 
-                    @if (HttpContext.Current.Session["Role"] == "Patient" || HttpContext.Current.Session["Role"] == "Doctor")
-                    {
-                        <li> <a href="/Message/Index">Messages</a> </li>
-                    }
-
-                    <li><a href="../Home/LogOut" class="waves-effect"><i class="icon-logout fa-fw"></i> <span class="hide-menu">Log out</span></a></li>
                 </ul>
 
             </div>
@@ -308,17 +177,6 @@
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row bg-title">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Hospital Dashboard</h4>
-                    </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <a href="https://themeforest.net/item/elite-admin-responsive-dashboard-web-app-kit-/16750820" target="_blank" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Buy Now</a>
-                        <ol class="breadcrumb">
-                            <li><a href="index.html">Hospital</a></li>
-                            <li class="active">Dashboard</li>
-                        </ol>
-                    </div>
-                    <!-- /.col-lg-12 -->
                 </div>
                 <div class="row">
                     <div class="row">
@@ -358,11 +216,6 @@
     <script src="~/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
     <script src="~/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
 
-    @*<script src="~/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
-
-        <script src="~/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
-        <script src="~/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>*@
-
     <!-- Plugin JavaScript -->
     <script src="~/plugins/bower_components/moment/moment.js"></script>
 
@@ -389,8 +242,6 @@
     <!-- end - This is for export functionality only -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
-
-    @*<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/additional-methods.js"></script>*@
 
     <script>
         $(document).ready(function () {

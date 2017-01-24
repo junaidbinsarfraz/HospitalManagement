@@ -16,12 +16,14 @@ namespace HospitalManagament.Hubs
 {
     public class ChatHub : Hub
     {
+        // Hold all the connections of each user
         public static ConcurrentDictionary<string, UserConnection> UserConnections = new ConcurrentDictionary<string, UserConnection>();
         public void Hello()
         {
             Clients.All.hello();
         }
 
+        // Called this function when user is connected
         public override Task OnConnected()
         {
             lock (UserConnections)
@@ -31,6 +33,7 @@ namespace HospitalManagament.Hubs
             return base.OnConnected();
         }
 
+        // Called this fucntion when user is disconnected
         public override Task OnDisconnected(bool StopCalled)
         {
             UserConnection garbage;
@@ -49,6 +52,7 @@ namespace HospitalManagament.Hubs
             return base.OnDisconnected(StopCalled);
         }
 
+        // Call this function when user send message to other user
         public void SendMessage(int ToUserId, string Text, string ToConnectionId)
         {
             int FromUserId = -1;
@@ -98,7 +102,6 @@ namespace HospitalManagament.Hubs
                     db.SaveChanges();
 
                     // Send Message to user
-                    // appendNewMessage (FromUserId, Text)
                     if (FromUserId != -1)
                     {
                         Clients.Client(ToConnectionId).AppendNewMessage(FromUserId, Text);
@@ -112,6 +115,7 @@ namespace HospitalManagament.Hubs
             }
         }
 
+        // Register new user connection
         public void RegisterUser(int UserId, bool IsPatient)
         {
             // Get User from database
@@ -153,6 +157,7 @@ namespace HospitalManagament.Hubs
             }
         }
 
+        // Get connection by connection id
         public void GetConnection(string ConnectionId)
         {
             UserConnection userConnection;
@@ -175,6 +180,7 @@ namespace HospitalManagament.Hubs
 
         }
 
+        // Send message from one user to other user
         public void SendMessage(string Text, int PatientId, int DoctorId, bool FromPatient, string ConnectionId)
         {
             HospitalManagementContext db = new HospitalManagementContext();

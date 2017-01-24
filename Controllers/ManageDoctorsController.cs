@@ -13,14 +13,14 @@ namespace HospitalManagament.Controllers
     {
         private HospitalManagementContext db = new HospitalManagementContext();
 
-        // GET: ManagePatients
+        // GET: ManageDoctors
         public ActionResult Index()
         {
             var users = db.Users.Include(u => u.Doctor);
             return View(users.ToList().Where(x => x.UserName != "Admin").Where(x => x.Doctor != null));
         }
 
-        // GET: ManagePatients/Details/5
+        // GET: ManageDoctors/Details/5
         public ActionResult Details(long? id)
         {
             if (id == null)
@@ -35,13 +35,13 @@ namespace HospitalManagament.Controllers
             return View(user);
         }
 
-        // GET: ManagePatients/Create
+        // GET: ManageDoctors/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ManagePatients/Create
+        // POST: ManageDoctors/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -49,7 +49,7 @@ namespace HospitalManagament.Controllers
         {
             if (ModelState.IsValid)
             {
-                // add role as patient 
+                // add role as doctor
                 user.Role = db.Roles.ToList().Where(u => u.Name == "Doctor").FirstOrDefault();
 
                 db.Users.Add(user);
@@ -58,6 +58,7 @@ namespace HospitalManagament.Controllers
 
                 User Admin = (User)HttpContext.Session["LoggedInUser"];
 
+                // Update totals count
                 if (Admin != null && Admin.Role.Name == "Admin")
                 {
                     HttpContext.Session["TotalPatientList"] = db.Users.Include(u => u.Patient).Where(u => u.Patient != null).ToList();
@@ -74,7 +75,7 @@ namespace HospitalManagament.Controllers
             return View(user);
         }
 
-        // GET: ManagePatients/Edit/5
+        // GET: ManageDoctors/Edit/5
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -90,7 +91,7 @@ namespace HospitalManagament.Controllers
             return View(user);
         }
 
-        // POST: ManagePatients/Edit/5
+        // POST: ManageDoctors/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -99,8 +100,6 @@ namespace HospitalManagament.Controllers
             if (ModelState.IsValid)
             {
                 User oldUser = db.Users.FirstOrDefault(u => u.Id == user.Id);
-
-                // temp sol
 
                 oldUser.FullName = user.FullName;
                 oldUser.UserName = user.UserName;
@@ -121,7 +120,7 @@ namespace HospitalManagament.Controllers
             return View(user);
         }
 
-        // GET: ManagePatients/Delete/5
+        // GET: ManageDoctors/Delete/5
         public ActionResult Delete(long? id)
         {
             if (id == null)
@@ -144,7 +143,7 @@ namespace HospitalManagament.Controllers
             return RedirectToAction("Index");
         }
 
-        // POST: ManagePatients/Delete/5
+        // POST: ManageDoctors/Delete/5
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(long id)
         {
