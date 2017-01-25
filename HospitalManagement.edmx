@@ -68,6 +68,7 @@
     <Property Name="EntryDate" Type="datetime" Nullable="true" />
     <Property Name="EntryTime" Type="time" Nullable="true" />
     <Property Name="EntryDateStr" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Status" Type="nvarchar(max)" Nullable="true" DefaultValue="&quot;Admitted&quot;" />
     <Property Name="User_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Caregivers">
@@ -261,6 +262,7 @@
           <Property Name="EntryTime" Type="Time" Nullable="true" />
           <Property Name="EntryDateStr" Type="String" Nullable="true" />
           <NavigationProperty Name="Messages" Relationship="HospitalManagement.PatientMessage" FromRole="Patient" ToRole="Message" />
+          <Property Name="Status" Type="String" Nullable="true" DefaultValue="&quot;Admitted&quot;" />
         </EntityType>
         <EntityType Name="Caregiver">
           <Key>
@@ -376,6 +378,7 @@
           <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
           <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
           <ScalarProperty Name="EntryDateStr" ColumnName="EntryDateStr" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

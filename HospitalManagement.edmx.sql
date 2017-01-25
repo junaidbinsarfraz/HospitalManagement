@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/22/2017 19:10:03
--- Generated from EDMX file: E:\GithubNew\HospitalManagement\HospitalManagement.edmx
+-- Date Created: 01/25/2017 11:14:13
+-- Generated from EDMX file: D:\Junaid\Github\HospitalManagement\HospitalManagement.edmx
 -- --------------------------------------------------
 
 USE master
@@ -103,6 +103,7 @@ CREATE TABLE [dbo].[Patients] (
     [EntryDate] datetime  NULL,
     [EntryTime] time  NULL,
     [EntryDateStr] nvarchar(max)  NULL,
+    [Status] nvarchar(max)  NULL,
     [User_Id] bigint  NOT NULL
 );
 GO

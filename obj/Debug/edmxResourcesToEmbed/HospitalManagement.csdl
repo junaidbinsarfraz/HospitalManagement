@@ -69,6 +69,7 @@
     <Property Name="EntryTime" Type="Time" Nullable="true" />
     <Property Name="EntryDateStr" Type="String" Nullable="true" />
     <NavigationProperty Name="Messages" Relationship="HospitalManagement.PatientMessage" FromRole="Patient" ToRole="Message" />
+    <Property Name="Status" Type="String" Nullable="true" DefaultValue="&quot;Admitted&quot;" />
   </EntityType>
   <EntityType Name="Caregiver">
     <Key>

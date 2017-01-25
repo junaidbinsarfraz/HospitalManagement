@@ -55,6 +55,7 @@ namespace HospitalManagament.Controllers
 
                 // add role as patient 
                 user.Role = db.Roles.ToList().Where(u => u.Name == "Patient").FirstOrDefault();
+                user.Patient.Status = "Admitted";
 
                 db.Users.Add(user);
 
@@ -65,8 +66,8 @@ namespace HospitalManagament.Controllers
                 // Update totals count
                 if (Admin != null && Admin.Role.Name == "Admin")
                 {
-                    HttpContext.Session["TotalPatientList"] = db.Users.Include(u => u.Patient).Where(u => u.Patient != null).ToList();
-                    HttpContext.Session["TotalPatients"] = db.Users.Count(u => u.Patient != null);
+                    HttpContext.Session["TotalPatientList"] = db.Users.Include(u => u.Patient).Where(u => u.Patient != null).Where(u => u.Patient.Status == "Admitted").ToList();
+                    HttpContext.Session["TotalPatients"] = db.Users.Count(u => u.Patient != null && u.Patient.Status == "Admitted");
                     HttpContext.Session["TotalCaregiverList"] = db.Users.Include(u => u.Caregiver).Where(u => u.Caregiver != null).ToList();
                     HttpContext.Session["TotalCareGivers"] = db.Users.Count(u => u.Caregiver != null);
                     HttpContext.Session["TotalDoctorList"] = db.Users.Include(u => u.Doctor).Where(u => u.Doctor != null).ToList();
@@ -116,8 +117,12 @@ namespace HospitalManagament.Controllers
                 oldUser.Gender = user.Gender;
                 oldUser.Address = user.Address;
                 oldUser.Comments = user.Comments;
+                oldUser.Patient.Status = user.Patient.Status;
 
                 db.SaveChanges();
+
+                HttpContext.Session["TotalPatientList"] = db.Users.Include(u => u.Patient).Where(u => u.Patient != null).Where(u => u.Patient.Status == "Admitted").ToList();
+                HttpContext.Session["TotalPatients"] = db.Users.Count(u => u.Patient != null && u.Patient.Status == "Admitted");
 
                 return RedirectToAction("Index");
             }
@@ -164,6 +169,31 @@ namespace HospitalManagament.Controllers
             User user = db.Users.Find(id);
             db.Users.Remove(user);
             db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet, ActionName("Checkout")]
+        // GET: ManagePatients/Delete/5
+        public ActionResult Checkout(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            User user = db.Users.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            user.Patient.Status = "Not Admitted";
+
+            db.SaveChanges();
+
+            HttpContext.Session["TotalPatientList"] = db.Users.Include(u => u.Patient).Where(u => u.Patient != null).Where(u => u.Patient.Status == "Admitted").ToList();
+            HttpContext.Session["TotalPatients"] = db.Users.Count(u => u.Patient != null && u.Patient.Status == "Admitted");
+
             return RedirectToAction("Index");
         }
 

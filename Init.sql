@@ -23,9 +23,9 @@ VALUES
 GO
 
 INSERT INTO [Patients]
-([Patients].Disease, [Patients].Occupation, [Patients].User_Id, [Patients].EntryDate, [Patients].EntryTime)
+([Patients].Disease, [Patients].Occupation, [Patients].User_Id, [Patients].EntryDate, [Patients].EntryTime, [Patients].Status)
 VALUES
-('Flu', 'Engineer', 2, '20170618 10:34:09 AM', '10:34:09 AM')
+('Flu', 'Engineer', 2, '20170618 10:34:09 AM', '10:34:09 AM', 'Admitted')
 GO
 
 INSERT INTO [Users] 
@@ -35,9 +35,9 @@ VALUES
 GO
 
 INSERT INTO [Patients]
-([Patients].Disease, [Patients].Occupation, [Patients].User_Id, [Patients].EntryDate, [Patients].EntryTime)
+([Patients].Disease, [Patients].Occupation, [Patients].User_Id, [Patients].EntryDate, [Patients].EntryTime, [Patients].Status)
 VALUES
-('Flu', 'Engineer', 3, '20170218 10:34:09 AM', '10:34:09 AM')
+('Flu', 'Engineer', 3, '20170218 10:34:09 AM', '10:34:09 AM', 'Admitted')
 GO
 
 INSERT INTO [Users] 
@@ -47,9 +47,9 @@ VALUES
 GO
 
 INSERT INTO [Patients]
-([Patients].Disease, [Patients].Occupation, [Patients].User_Id, [Patients].EntryDate, [Patients].EntryTime)
+([Patients].Disease, [Patients].Occupation, [Patients].User_Id, [Patients].EntryDate, [Patients].EntryTime, [Patients].Status)
 VALUES
-('Flu', 'Engineer', 4, '20170618 10:34:09 AM', '10:34:09 AM')
+('Flu', 'Engineer', 4, '20170618 10:34:09 AM', '10:34:09 AM', 'Admitted')
 GO
 
 INSERT INTO [Users] 
@@ -59,9 +59,9 @@ VALUES
 GO
 
 INSERT INTO [Patients]
-([Patients].Disease, [Patients].Occupation, [Patients].User_Id, [Patients].EntryDate, [Patients].EntryTime)
+([Patients].Disease, [Patients].Occupation, [Patients].User_Id, [Patients].EntryDate, [Patients].EntryTime, [Patients].Status)
 VALUES
-('Flu', 'Engineer', 5, '20170218 10:34:09 AM', '10:34:09 AM')
+('Flu', 'Engineer', 5, '20170218 10:34:09 AM', '10:34:09 AM', 'Admitted')
 GO
 
 INSERT INTO [Users] 
@@ -71,9 +71,9 @@ VALUES
 GO
 
 INSERT INTO [Patients]
-([Patients].Disease, [Patients].Occupation, [Patients].User_Id, [Patients].EntryDate, [Patients].EntryTime)
+([Patients].Disease, [Patients].Occupation, [Patients].User_Id, [Patients].EntryDate, [Patients].EntryTime, [Patients].Status)
 VALUES
-('Flu', 'Engineer', 6, '20170618 10:34:09 AM', '10:34:09 AM')
+('Flu', 'Engineer', 6, '20170618 10:34:09 AM', '10:34:09 AM', 'Admitted')
 GO
 
 INSERT INTO [Users] 

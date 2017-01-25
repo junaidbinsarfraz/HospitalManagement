@@ -17,6 +17,7 @@ namespace HospitalManagament
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Patient()
         {
+            this.Status = "\"Admitted\"";
             this.Messages = new HashSet<Message>();
         }
     
@@ -26,6 +27,7 @@ namespace HospitalManagament
         public Nullable<System.DateTime> EntryDate { get; set; }
         public Nullable<System.TimeSpan> EntryTime { get; set; }
         public string EntryDateStr { get; set; }
+        public string Status { get; set; }
     
         public virtual User User { get; set; }
         public virtual Caregiver Caregiver { get; set; }

@@ -71,8 +71,8 @@ namespace HospitalManagament.Controllers
                 // Update totals count 
                 if (Admin != null && Admin.Role.Name == "Admin")
                 {
-                    HttpContext.Session["TotalPatientList"] = db.Users.Include(u => u.Patient).Where(u => u.Patient != null).ToList();
-                    HttpContext.Session["TotalPatients"] = db.Users.Count(u => u.Patient != null);
+                    HttpContext.Session["TotalPatientList"] = db.Users.Include(u => u.Patient).Where(u => u.Patient != null).Where(u => u.Patient.Status == "Admitted").ToList();
+                    HttpContext.Session["TotalPatients"] = db.Users.Count(u => u.Patient != null && u.Patient.Status == "Admitted");
                     HttpContext.Session["TotalCaregiverList"] = db.Users.Include(u => u.Caregiver).Where(u => u.Caregiver != null).ToList();
                     HttpContext.Session["TotalCareGivers"] = db.Users.Count(u => u.Caregiver != null);
                     HttpContext.Session["TotalDoctorList"] = db.Users.Include(u => u.Doctor).Where(u => u.Doctor != null).ToList();
