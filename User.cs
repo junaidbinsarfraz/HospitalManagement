@@ -18,6 +18,7 @@ namespace HospitalManagament
         public User()
         {
             this.Gender = "Male";
+            this.Events = new HashSet<Event>();
         }
     
         public long Id { get; set; }
@@ -36,5 +37,7 @@ namespace HospitalManagament
         public virtual Caregiver Caregiver { get; set; }
         public virtual Doctor Doctor { get; set; }
         public virtual Role Role { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Event> Events { get; set; }
     }
 }

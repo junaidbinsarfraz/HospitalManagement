@@ -183,6 +183,14 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-12">
+        <div class="white-box">
+            <div id="calendar"></div>
+        </div>
+    </div>
+</div>
+
 @section Scripts
 {
     <!-- Chart JS -->
@@ -345,6 +353,35 @@
                 ],
                 pageLength: 5
             });
+        });
+
+        // Make calendar here
+
+        // Send ajax call
+        $.ajax({
+            url: '@Url.Action("AllEvents", "Home")',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+
+                // Append All events
+
+                $('#calendar').fullCalendar({
+       
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay'
+                    },
+                    //editable: true,
+                    //droppable: true, // this allows things to be dropped onto the calendar
+                    //eventLimit: true, // allow "more" link when too many events
+                    events: data
+                });
+            },
+            error: function () {
+                alert("Error");
+            }
         });
 
     </script>

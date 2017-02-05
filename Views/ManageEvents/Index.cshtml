@@ -1,0 +1,58 @@
+﻿@model IEnumerable<HospitalManagament.Event>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="white-box">
+    <div style="margin-bottom: 15px;">
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success waves-effect waves-light m-r-10" })
+    </div>
+
+    <div class="table-responsive">
+        <table id="myTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th class="no-sort">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Start)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.End)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+    $('#myTable').DataTable({dom: 'Bfrtip',
+        buttons: [
+            'pdf', 'print'
+        ]});
+    });
+
+</script>
+<!--Style Switcher -->
+<script src="../plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>

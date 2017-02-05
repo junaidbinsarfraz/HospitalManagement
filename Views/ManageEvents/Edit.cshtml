@@ -1,0 +1,61 @@
+﻿@model HospitalManagament.Event
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="white-box">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12">
+            @using (Html.BeginForm("Edit", "ManageEvents", FormMethod.Post,
+                             new { enctype = "multipart/form-data", data_toggle = "validator" }))
+            {
+                @Html.HiddenFor(a => a.Id)
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="control-label">Name</label>
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1" class="control-label">Description</label>
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="control-label">Start Date</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.StartDateStr, new { htmlAttributes = new { @class = "form-control start-date-picker mydatepicker", @required = "required", @type = "text" } })
+                        <span class="input-group-addon"><i class="icon-calender"></i></span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.StartDateStr, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="control-label">Start Time</label>
+                    <div class="input-group start-clock-picker clockpicker" data-placement="bottom" data-align="top" data-autoclose="true">
+                        @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "text" } })
+                        <span class="input-group-addon"> <span class="glyphicon glyphicon-time"></span> </span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="control-label">End Date</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.EndDateStr, new { htmlAttributes = new { @class = "form-control end-date-picker mydatepicker", @required = "required", @type = "text" } })
+                        <span class="input-group-addon"><i class="icon-calender"></i></span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.EndDateStr, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="control-label">End Time</label>
+                    <div class="input-group end-clock-picker clockpicker" data-placement="bottom" data-align="top" data-autoclose="true">
+                        @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "text" } })
+                        <span class="input-group-addon"> <span class="glyphicon glyphicon-time"></span> </span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                </div>
+                <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Save</button>
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success waves-effect waves-light m-r-10" })
+            }
+        </div>
+    </div>
+</div>

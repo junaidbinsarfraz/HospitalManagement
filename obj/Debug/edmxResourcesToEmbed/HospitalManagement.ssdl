@@ -7,6 +7,7 @@
     <EntitySet Name="Doctors" EntityType="HospitalManagement.Store.Doctors" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Roles" EntityType="HospitalManagement.Store.Roles" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Messages" EntityType="HospitalManagement.Store.Messages" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Events" EntityType="HospitalManagement.Store.Events" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="UserPatient" Association="HospitalManagement.Store.UserPatient">
       <End Role="User" EntitySet="Users" />
       <End Role="Patient" EntitySet="Patients" />
@@ -34,6 +35,10 @@
     <AssociationSet Name="PatientMessage" Association="HospitalManagement.Store.PatientMessage">
       <End Role="Patient" EntitySet="Patients" />
       <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="UserEvent" Association="HospitalManagement.Store.UserEvent">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Event" EntitySet="Events" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Users">
@@ -99,6 +104,23 @@
     <Property Name="DoctorId" Type="bigint" Nullable="false" />
     <Property Name="PatientId" Type="bigint" Nullable="false" />
     <Property Name="FromPatient" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Start" Type="datetime" Nullable="true" />
+    <Property Name="End" Type="datetime" Nullable="true" />
+    <Property Name="allDay" Type="bit" Nullable="true" DefaultValue="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Status" Type="bit" Nullable="true" DefaultValue="true" />
+    <Property Name="StartDateStr" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="StartTime" Type="time" Nullable="true" />
+    <Property Name="EndDateStr" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="EndTime" Type="time" Nullable="true" />
   </EntityType>
   <Association Name="UserPatient">
     <End Role="User" Type="HospitalManagement.Store.Users" Multiplicity="1" />
@@ -181,6 +203,18 @@
       </Principal>
       <Dependent Role="Message">
         <PropertyRef Name="PatientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserEvent">
+    <End Role="User" Type="HospitalManagement.Store.Users" Multiplicity="1" />
+    <End Role="Event" Type="HospitalManagement.Store.Events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

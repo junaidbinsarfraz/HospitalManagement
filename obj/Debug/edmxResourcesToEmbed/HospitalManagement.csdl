@@ -35,6 +35,11 @@
       <End Role="Patient" EntitySet="Patients" />
       <End Role="Message" EntitySet="Messages" />
     </AssociationSet>
+    <EntitySet Name="Events" EntityType="HospitalManagement.Event" />
+    <AssociationSet Name="UserEvent" Association="HospitalManagement.UserEvent">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Event" EntitySet="Events" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="User">
     <Key>
@@ -55,6 +60,7 @@
     <NavigationProperty Name="Doctor" Relationship="HospitalManagement.UserDoctor" FromRole="User" ToRole="Doctor" />
     <NavigationProperty Name="Role" Relationship="HospitalManagement.UserRole" FromRole="User" ToRole="Role" />
     <Property Name="FullName" Type="String" Nullable="true" />
+    <NavigationProperty Name="Events" Relationship="HospitalManagement.UserEvent" FromRole="User" ToRole="Event" />
   </EntityType>
   <EntityType Name="Patient">
     <Key>
@@ -150,6 +156,36 @@
       </Principal>
       <Dependent Role="Message">
         <PropertyRef Name="PatientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Start" Type="DateTime" Nullable="true" />
+    <Property Name="End" Type="DateTime" Nullable="true" />
+    <Property Name="allDay" Type="Boolean" Nullable="true" DefaultValue="false" />
+    <NavigationProperty Name="User" Relationship="HospitalManagement.UserEvent" FromRole="Event" ToRole="User" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="true" />
+    <Property Name="Description" Type="String" Nullable="true" />
+    <Property Name="Status" Type="Boolean" Nullable="true" DefaultValue="true" />
+    <Property Name="StartDateStr" Type="String" Nullable="true" />
+    <Property Name="StartTime" Type="Time" Nullable="true" />
+    <Property Name="EndDateStr" Type="String" Nullable="true" />
+    <Property Name="EndTime" Type="Time" Nullable="true" />
+  </EntityType>
+  <Association Name="UserEvent">
+    <End Type="HospitalManagement.User" Role="User" Multiplicity="1" />
+    <End Type="HospitalManagement.Event" Role="Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -12,6 +12,7 @@
     <EntitySet Name="Doctors" EntityType="HospitalManagement.Store.Doctors" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Roles" EntityType="HospitalManagement.Store.Roles" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Messages" EntityType="HospitalManagement.Store.Messages" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Events" EntityType="HospitalManagement.Store.Events" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="UserPatient" Association="HospitalManagement.Store.UserPatient">
       <End Role="User" EntitySet="Users" />
       <End Role="Patient" EntitySet="Patients" />
@@ -39,6 +40,10 @@
     <AssociationSet Name="PatientMessage" Association="HospitalManagement.Store.PatientMessage">
       <End Role="Patient" EntitySet="Patients" />
       <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="UserEvent" Association="HospitalManagement.Store.UserEvent">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Event" EntitySet="Events" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Users">
@@ -104,6 +109,23 @@
     <Property Name="DoctorId" Type="bigint" Nullable="false" />
     <Property Name="PatientId" Type="bigint" Nullable="false" />
     <Property Name="FromPatient" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Start" Type="datetime" Nullable="true" />
+    <Property Name="End" Type="datetime" Nullable="true" />
+    <Property Name="allDay" Type="bit" Nullable="true" DefaultValue="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Status" Type="bit" Nullable="true" DefaultValue="true" />
+    <Property Name="StartDateStr" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="StartTime" Type="time" Nullable="true" />
+    <Property Name="EndDateStr" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="EndTime" Type="time" Nullable="true" />
   </EntityType>
   <Association Name="UserPatient">
     <End Role="User" Type="HospitalManagement.Store.Users" Multiplicity="1" />
@@ -189,6 +211,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="UserEvent">
+    <End Role="User" Type="HospitalManagement.Store.Users" Multiplicity="1" />
+    <End Role="Event" Type="HospitalManagement.Store.Events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -228,6 +262,11 @@
             <End Role="Patient" EntitySet="Patients" />
             <End Role="Message" EntitySet="Messages" />
           </AssociationSet>
+          <EntitySet Name="Events" EntityType="HospitalManagement.Event" />
+          <AssociationSet Name="UserEvent" Association="HospitalManagement.UserEvent">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -248,6 +287,7 @@
           <NavigationProperty Name="Doctor" Relationship="HospitalManagement.UserDoctor" FromRole="User" ToRole="Doctor" />
           <NavigationProperty Name="Role" Relationship="HospitalManagement.UserRole" FromRole="User" ToRole="Role" />
           <Property Name="FullName" Type="String" Nullable="true" />
+          <NavigationProperty Name="Events" Relationship="HospitalManagement.UserEvent" FromRole="User" ToRole="Event" />
         </EntityType>
         <EntityType Name="Patient">
           <Key>
@@ -346,6 +386,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Start" Type="DateTime" Nullable="true" />
+          <Property Name="End" Type="DateTime" Nullable="true" />
+          <Property Name="allDay" Type="Boolean" Nullable="true" DefaultValue="false" />
+          <NavigationProperty Name="User" Relationship="HospitalManagement.UserEvent" FromRole="Event" ToRole="User" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="true" />
+          <Property Name="Description" Type="String" Nullable="true" />
+          <Property Name="Status" Type="Boolean" Nullable="true" DefaultValue="true" />
+          <Property Name="StartDateStr" Type="String" Nullable="true" />
+          <Property Name="StartTime" Type="Time" Nullable="true" />
+          <Property Name="EndDateStr" Type="String" Nullable="true" />
+          <Property Name="EndTime" Type="Time" Nullable="true" />
+        </EntityType>
+        <Association Name="UserEvent">
+          <End Type="HospitalManagement.User" Role="User" Multiplicity="1" />
+          <End Type="HospitalManagement.Event" Role="Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -414,6 +484,24 @@
           <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
           <ScalarProperty Name="PatientId" ColumnName="PatientId" />
           <ScalarProperty Name="FromPatient" ColumnName="FromPatient" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="IsTypeOf(HospitalManagement.Event)">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Start" ColumnName="Start" />
+          <ScalarProperty Name="End" ColumnName="End" />
+          <ScalarProperty Name="allDay" ColumnName="allDay" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="StartDateStr" ColumnName="StartDateStr" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndDateStr" ColumnName="EndDateStr" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

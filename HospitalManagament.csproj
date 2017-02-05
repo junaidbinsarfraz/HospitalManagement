@@ -152,12 +152,16 @@
     <Compile Include="Controllers\Doctor.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageCareGiversController.cs" />
+    <Compile Include="Controllers\ManageEventsController.cs" />
     <Compile Include="Controllers\ManageDoctorsController.cs" />
     <Compile Include="Controllers\ManagePatientsController.cs" />
     <Compile Include="Controllers\CareGiver.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Doctor.cs">
+      <DependentUpon>HospitalManagement.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Event.cs">
       <DependentUpon>HospitalManagement.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -3212,6 +3216,9 @@
     <Content Include="Views\Doctor\Edit.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
+    <Content Include="Views\ManageEvents\Create.cshtml" />
+    <Content Include="Views\ManageEvents\Edit.cshtml" />
+    <Content Include="Views\ManageEvents\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/25/2017 11:14:13
--- Generated from EDMX file: D:\Junaid\Github\HospitalManagement\HospitalManagement.edmx
+-- Date Created: 02/05/2017 14:42:44
+-- Generated from EDMX file: E:\GithubNew\HospitalManagement\HospitalManagement.edmx
 -- --------------------------------------------------
 
 USE master
@@ -50,6 +50,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_PatientMessage]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Messages] DROP CONSTRAINT [FK_PatientMessage];
 GO
+IF OBJECT_ID(N'[dbo].[FK_UserEvent]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Events] DROP CONSTRAINT [FK_UserEvent];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -72,6 +75,9 @@ IF OBJECT_ID(N'[dbo].[Roles]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Messages]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Messages];
+GO
+IF OBJECT_ID(N'[dbo].[Events]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Events];
 GO
 
 -- --------------------------------------------------
@@ -142,6 +148,23 @@ CREATE TABLE [dbo].[Messages] (
 );
 GO
 
+-- Creating table 'Events'
+CREATE TABLE [dbo].[Events] (
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [Start] datetime  NULL,
+    [End] datetime  NULL,
+    [allDay] bit  NULL,
+    [UserId] bigint  NOT NULL,
+    [Name] nvarchar(max)  NULL,
+    [Description] nvarchar(max)  NULL,
+    [Status] bit  NULL,
+    [StartDateStr] nvarchar(max)  NULL,
+    [StartTime] time  NULL,
+    [EndDateStr] nvarchar(max)  NULL,
+    [EndTime] time  NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -179,6 +202,12 @@ GO
 -- Creating primary key on [Id] in table 'Messages'
 ALTER TABLE [dbo].[Messages]
 ADD CONSTRAINT [PK_Messages]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Events'
+ALTER TABLE [dbo].[Events]
+ADD CONSTRAINT [PK_Events]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -289,6 +318,21 @@ GO
 CREATE INDEX [IX_FK_PatientMessage]
 ON [dbo].[Messages]
     ([PatientId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'Events'
+ALTER TABLE [dbo].[Events]
+ADD CONSTRAINT [FK_UserEvent]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserEvent'
+CREATE INDEX [IX_FK_UserEvent]
+ON [dbo].[Events]
+    ([UserId]);
 GO
 
 -- --------------------------------------------------

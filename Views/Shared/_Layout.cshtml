@@ -31,6 +31,8 @@
     <!-- Daterange picker plugins css -->
     <link href="~/plugins/bower_components/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
     <link href="~/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Calendar CSS -->
+    <link href="~/plugins/bower_components/calendar/dist/fullcalendar.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="~/css/style.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -167,7 +169,17 @@
                             </ul>
                         </li>
                     }
-
+                    @if (HttpContext.Current.Session["Role"] == "Admin" || HttpContext.Current.Session["Role"] == "Doctor")
+                    {
+                        <li class="nav-small-cap m-t-10">--- Event</li>
+                        <li>
+                            <a href="javascript:void(0);" class="waves-effect"><i class="icon-people p-r-10"></i> <span class="hide-menu"> Events <span class="fa arrow"></span></span></a>
+                            <ul class="nav nav-second-level">
+                                <li> <a href="/ManageEvents/Index">All Events</a> </li>
+                                <li> <a href="/ManageEvents/Create">Add Event</a> </li>
+                            </ul>
+                        </li>
+                    }
                 </ul>
 
             </div>
@@ -216,8 +228,12 @@
     <script src="~/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
     <script src="~/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
 
+    <!-- Calendar JavaScript -->
+    <script src="~/plugins/bower_components/calendar/jquery-ui.min.js"></script>
     <!-- Plugin JavaScript -->
     <script src="~/plugins/bower_components/moment/moment.js"></script>
+    <script src='~/plugins/bower_components/calendar/dist/fullcalendar.min.js'></script>
+
 
     <!-- Clock Plugin JavaScript -->
     <script src="~/plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.js"></script>
