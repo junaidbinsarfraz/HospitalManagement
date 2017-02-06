@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -58,6 +59,7 @@ namespace HospitalManagament.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Add date and time
                 var StartDate = DateTime.ParseExact(event1.StartDateStr, "MM/dd/yyyy", CultureInfo.InvariantCulture);
 
                 event1.Start = new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, event1.StartTime.Value.Hours, event1.StartTime.Value.Minutes, event1.StartTime.Value.Seconds);
@@ -65,6 +67,8 @@ namespace HospitalManagament.Controllers
                 var EndDate = DateTime.ParseExact(event1.EndDateStr, "MM/dd/yyyy", CultureInfo.InvariantCulture);
 
                 event1.End = new DateTime(EndDate.Year, EndDate.Month, EndDate.Day, event1.EndTime.Value.Hours, event1.EndTime.Value.Minutes, event1.EndTime.Value.Seconds);
+
+                // Create url
 
                 User user = (User)HttpContext.Session["LoggedInUser"];
 
@@ -184,6 +188,26 @@ namespace HospitalManagament.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        // Fetch All event for loggedin user
+        [HttpGet]
+        public ActionResult AllEvents()
+        {
+            User user = (User)HttpContext.Session["LoggedInUser"];
+
+            List<Event> allEvents = new List<Event>();
+
+            if (user != null)
+            {
+                HospitalManagementContext db = new HospitalManagementContext();
+
+                allEvents = db.Database.SqlQuery<Event>("select * from[HospitalManagement].[dbo].Events e where e.UserId = " + user.Id).ToList();
+
+                //allEvents = (List<Event>) db.Events.ToList().Where(e => e.UserId == user.Id);
+            }
+
+            return Content(JsonConvert.SerializeObject(allEvents), "application/json");
         }
     }
 }

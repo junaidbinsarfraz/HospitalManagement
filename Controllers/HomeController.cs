@@ -257,25 +257,5 @@ namespace HospitalManagament.Controllers
                 Status = "updated"
             }, JsonRequestBehavior.AllowGet);
         }
-
-        // Fetch data for hollow line chart
-        [HttpGet]
-        public ActionResult AllEvents()
-        {
-            User user = (User)HttpContext.Session["LoggedInUser"];
-
-            List<Event> allEvents = new List<Event>();
-
-            if (user != null)
-            {
-                HospitalManagementContext db = new HospitalManagementContext();
-
-                allEvents = db.Database.SqlQuery<Event>("select * from[HospitalManagement].[dbo].Events e where e.UserId = " + user.Id).ToList();
-
-                //allEvents = (List<Event>) db.Events.ToList().Where(e => e.UserId == user.Id);
-            }
-
-            return Content(JsonConvert.SerializeObject(allEvents), "application/json");
-        }
     }
 }

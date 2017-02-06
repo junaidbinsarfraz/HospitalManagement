@@ -81,6 +81,7 @@
           <ScalarProperty Name="StartTime" ColumnName="StartTime" />
           <ScalarProperty Name="EndDateStr" ColumnName="EndDateStr" />
           <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

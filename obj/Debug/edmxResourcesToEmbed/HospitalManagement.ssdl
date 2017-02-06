@@ -121,6 +121,7 @@
     <Property Name="StartTime" Type="time" Nullable="true" />
     <Property Name="EndDateStr" Type="nvarchar(max)" Nullable="true" />
     <Property Name="EndTime" Type="time" Nullable="true" />
+    <Property Name="URL" Type="nvarchar(max)" Nullable="true" DefaultValue="javascript:void(0)" />
   </EntityType>
   <Association Name="UserPatient">
     <End Role="User" Type="HospitalManagement.Store.Users" Multiplicity="1" />

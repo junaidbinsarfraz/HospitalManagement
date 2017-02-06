@@ -87,3 +87,81 @@
 <div style="margin-bottom: 15px;">
     @Html.ActionLink("Edit", "Edit", "Doctor", new { id = Model.Id }, new { @class = "btn btn-success btn-block" })
 </div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="white-box">
+            <div id="calendar"></div>
+        </div>
+    </div>
+</div>
+<!-- /.modal -->
+<div id="event-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 id="event-title" class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <h4>Start</h4>
+                <p id="event-start"></p>
+                <h4>End</h4>
+                <p id="event-end"></p>
+                <h4>Description</h4>
+                <p id="event-description"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+
+
+    <script>
+        // Send ajax call
+        $.ajax({
+            url: '@Url.Action("AllEvents", "ManageEvents")',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+
+                // Append All events
+
+                $('#calendar').fullCalendar({
+                    eventClick: function (calEvent, jsEvent, view) {
+
+                        $('#event-title').text(calEvent.title);
+                        $('#event-start').text(calEvent.start._d.toLocaleString());
+                        $('#event-end').text(calEvent.end._d.toLocaleString());
+                        $('#event-description').text(calEvent.description);
+
+                        $('#event-modal').modal('show');
+
+                        // change the border color just for fun
+                        $(this).css('border-color', 'red');
+
+                    },
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay,listWeek'
+                    },
+                    allDayDefault: false,
+                    //editable: true,
+                    //droppable: true, // this allows things to be dropped onto the calendar
+                    eventLimit: true, // allow "more" link when too many events
+                    events: data
+                });
+            },
+            error: function () {
+                alert("Error");
+            }
+        });
+    </script>
+    
+}

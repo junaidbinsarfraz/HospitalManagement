@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="~/plugins/images/favicon.png">
-    <title>Elite Hospital Admin Template - Hospital admin dashboard web app kit</title>
+    <title>Elite Hospital Admin</title>
     <!-- Bootstrap Core CSS -->
     <script src="~/plugins/bower_components/jquery/dist/jquery.min.js"></script>
     <link href="~/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -33,6 +33,7 @@
     <link href="~/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- Calendar CSS -->
     <link href="~/plugins/bower_components/calendar/dist/fullcalendar.css" rel="stylesheet" />
+    <link href="~/plugins/bower_components/calendar/dist/fullcalendar.print.css" media="print" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="~/css/style.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -173,7 +174,7 @@
                     {
                         <li class="nav-small-cap m-t-10">--- Event</li>
                         <li>
-                            <a href="javascript:void(0);" class="waves-effect"><i class="icon-people p-r-10"></i> <span class="hide-menu"> Events <span class="fa arrow"></span></span></a>
+                            <a href="javascript:void(0);" class="waves-effect"><i class="ti-calendar p-r-10"></i> <span class="hide-menu"> Events <span class="fa arrow"></span></span></a>
                             <ul class="nav nav-second-level">
                                 <li> <a href="/ManageEvents/Index">All Events</a> </li>
                                 <li> <a href="/ManageEvents/Create">Add Event</a> </li>
@@ -196,7 +197,7 @@
                     </div>
                 </div>
                 <!-- /.container-fluid -->
-                <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
+                <footer class="footer text-center"> 2017 &copy; Elite Admin </footer>
             </div>
             <!-- /#page-wrapper -->
         </div>
@@ -246,6 +247,9 @@
     <!-- Date range Plugin JavaScript -->
     <script src="~/plugins/bower_components/timepicker/bootstrap-timepicker.min.js"></script>
     <script src="~/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <!-- Sweet-Alert  -->
+    <script src="~/plugins/bower_components/sweetalert/sweetalert.min.js"></script>
 
     <!-- start - This is for export functionality only -->
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>

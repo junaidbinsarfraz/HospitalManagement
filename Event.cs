@@ -21,6 +21,7 @@ namespace HospitalManagament
         {
             this.allDay = false;
             this.Status = true;
+            this.URL = "javascript:void(0)";
         }
     
         public long Id { get; set; }
@@ -33,12 +34,15 @@ namespace HospitalManagament
         public long UserId { get; set; }
         [DataMember(Name = "title")]
         public string Name { get; set; }
+        [DataMember(Name = "description")]
         public string Description { get; set; }
         public Nullable<bool> Status { get; set; }
         public string StartDateStr { get; set; }
         public Nullable<System.TimeSpan> StartTime { get; set; }
         public string EndDateStr { get; set; }
         public Nullable<System.TimeSpan> EndTime { get; set; }
+        [DataMember(Name = "url")]
+        public string URL { get; set; }
     
         public virtual User User { get; set; }
     }

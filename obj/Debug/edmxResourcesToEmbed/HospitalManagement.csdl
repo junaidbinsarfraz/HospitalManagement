@@ -176,6 +176,7 @@
     <Property Name="StartTime" Type="Time" Nullable="true" />
     <Property Name="EndDateStr" Type="String" Nullable="true" />
     <Property Name="EndTime" Type="Time" Nullable="true" />
+    <Property Name="URL" Type="String" Nullable="true" DefaultValue="javascript:void(0)" />
   </EntityType>
   <Association Name="UserEvent">
     <End Type="HospitalManagement.User" Role="User" Multiplicity="1" />

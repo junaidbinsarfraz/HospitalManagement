@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/05/2017 14:42:44
--- Generated from EDMX file: E:\GithubNew\HospitalManagement\HospitalManagement.edmx
+-- Date Created: 02/06/2017 09:19:37
+-- Generated from EDMX file: D:\Junaid\Github\HospitalManagement\HospitalManagement.edmx
 -- --------------------------------------------------
 
 USE master
@@ -161,7 +161,8 @@ CREATE TABLE [dbo].[Events] (
     [StartDateStr] nvarchar(max)  NULL,
     [StartTime] time  NULL,
     [EndDateStr] nvarchar(max)  NULL,
-    [EndTime] time  NULL
+    [EndTime] time  NULL,
+    [URL] nvarchar(max)  NULL
 );
 GO
 

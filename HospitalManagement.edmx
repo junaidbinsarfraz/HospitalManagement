@@ -126,6 +126,7 @@
     <Property Name="StartTime" Type="time" Nullable="true" />
     <Property Name="EndDateStr" Type="nvarchar(max)" Nullable="true" />
     <Property Name="EndTime" Type="time" Nullable="true" />
+    <Property Name="URL" Type="nvarchar(max)" Nullable="true" DefaultValue="javascript:void(0)" />
   </EntityType>
   <Association Name="UserPatient">
     <End Role="User" Type="HospitalManagement.Store.Users" Multiplicity="1" />
@@ -403,6 +404,7 @@
           <Property Name="StartTime" Type="Time" Nullable="true" />
           <Property Name="EndDateStr" Type="String" Nullable="true" />
           <Property Name="EndTime" Type="Time" Nullable="true" />
+          <Property Name="URL" Type="String" Nullable="true" DefaultValue="javascript:void(0)" />
         </EntityType>
         <Association Name="UserEvent">
           <End Type="HospitalManagement.User" Role="User" Multiplicity="1" />
@@ -502,6 +504,7 @@
           <ScalarProperty Name="StartTime" ColumnName="StartTime" />
           <ScalarProperty Name="EndDateStr" ColumnName="EndDateStr" />
           <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
